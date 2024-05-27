@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css"
+          href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"/>
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/fonts.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/Profka_client.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+    <title>Profile for Client</title>
+</head>
+<body>
+<header class="custom-header">
+    <section class="section1" style="--src:url(/img/0502f0f63cc56790c6952133ae2b1481.png)">
+        <div class="content_box">
+
+            <div class="searchBox">
+                <input class="searchInput" type="text" name="" placeholder="Search">
+                <button class="searchButton" href="#">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+            <a class="subtitle1" th:href="@{'/main/'}"><h3>STELLAR<br/>INVESTMENT</h3></a>
+
+            <a class="subtitle2" th:href="@{'/project/all/team/'}" sec:authorize="hasAuthority('User')"><h3>
+                Projects</h3></a>
+
+            <a class="subtitle2" th:href="@{'/investor/all/projects/'}" sec:authorize="hasAuthority('Investor')"><h3>Projects</h3></a>
+            <a class="subtitle21" th:href="@{'/main/'}"><h3>Home</h3></a>
+
+            <img class="image4" src="/img/ace06293b0d4076285adfa86c63156ab.png" alt=""/>
+            <div class="custom-dropdown">
+                <img class="custom-box" th:src="@{${user.photosImagePath}}" alt="alt text"
+                     onclick="toggleCustomDropdown()">
+                <div id="myCustomDropdown" class="custom-dropdown-content">
+                    <a th:href="@{'/main/account_details'}">My Profile</a>
+                    <a sec:authorize="hasAuthority('Admin')" th:href="@{'/admin/projects'}">Manage Projects</a>
+                    <a sec:authorize="hasAuthority('Investor')" th:href="@{'/investor/my/investments'}">My Investments</a>
+                    <a th:href="@{'/project/my/'}" sec:authorize="hasAuthority('User')">Project Applications</a>
+                    <a th:href="@{'/project/my/created/'}" sec:authorize="hasAuthority('User')">My Projects</a>
+                    <a th:href="@{'/project/'}" sec:authorize="hasAuthority('User')">Create Projects</a>
+                    <a href="JavaScript:void(0)" onclick="singOutForm.submit()">Log Out
+                        <form th:action="@{'/logout'}" method="post" id="singOutForm"></form>
+                    </a>
+                </div>
+            </div>
+
+            <a th:href="@{'/investor/basket/'}"><div class="wrapper5" style="--src:url(/img/purchase.png)" sec:authorize="hasAuthority('Investor')"></div></a>
+
+
+        </div>
+    </section>
+</header>
+<section class="container light-style flex-grow-1 container-p-y" style="margin-bottom: 100px;">
+
+
+    <div id="success-box" th:if="${param.changed != null}">
+        <div class="dot"></div>
+        <div class="dot two"></div>
+        <div class="face">
+            <div class="eye"></div>
+            <div class="eye right"></div>
+            <div class="mouth happy"></div>
+        </div>
+        <div class="shadow scale"></div>
+        <div class="message">
+            <p>Successfully changed password</p>
+        </div>
+        <button class="button-box" onclick="hideSuccessBox()"><h1 class="green">Great</h1></button>
+    </div>
+
+    <div id="error-box" th:if="${param.incorrect != null}">
+        <div class="dot"></div>
+        <div class="dot two"></div>
+        <div class="face2">
+            <div class="eye"></div>
+            <div class="eye right"></div>
+            <div class="mouth sad"></div>
+        </div>
+        <div class="shadow move"></div>
+        <div class="message">
+            <p>Your current password is incorrect! Try again.</p>
+        </div>
+        <button class="button-box" onclick="hideErrorBox()"><h1 class="red">Okay</h1></button>
+    </div>
+
+    <div id="error-box" th:if="${param.appliedAlready != null}">
+        <div class="dot"></div>
+        <div class="dot two"></div>
+        <div class="face2">
+            <div class="eye"></div>
+            <div class="eye right"></div>
+            <div class="mouth sad"></div>
+        </div>
+        <div class="shadow move"></div>
+        <div class="message">
+            <p>You have already applied for that
+                position!</p>
+        </div>
+        <button class="button-box" onclick="hideErrorBox()"><h1 class="red">Okay</h1></button>
+    </div>
+
+    <div id="success-box" th:if="${param.memberAlready != null}">
+        <div class="dot"></div>
+        <div class="dot two"></div>
+        <div class="face">
+            <div class="eye"></div>
+            <div class="eye right"></div>
+            <div class="mouth happy"></div>
+        </div>
+        <div class="shadow scale"></div>
+        <div class="message">
+            <p>You are already member of that project
+                position!</p>
+        </div>
+        <button class="button-box" onclick="hideSuccessBox()"><h1 class="green">Great</h1></button>
+    </div>
+
+    <div id="error-box" th:if="${param.applyOnlyOne != null}">
+        <div class="dot"></div>
+        <div class="dot two"></div>
+        <div class="face2">
+            <div class="eye"></div>
+            <div class="eye right"></div>
+            <div class="mouth sad"></div>
+        </div>
+        <div class="shadow move"></div>
+        <div class="message">
+            <p>You can only apply for one position of project!</p>
+        </div>
+        <button class="button-box" onclick="hideErrorBox()"><h1 class="red">Okay</h1></button>
+    </div>
+
+    <div id="success-box" th:if="${param.successfullyApplied != null}">
+        <div class="dot"></div>
+        <div class="dot two"></div>
+        <div class="face">
+            <div class="eye"></div>
+            <div class="eye right"></div>
+            <div class="mouth happy"></div>
+        </div>
+        <div class="shadow scale"></div>
+        <div class="message">
+            <h1 class="alert" style="margin-bottom: -1rem;">Successfully applied!</h1>
+            <p>You can see the status in
+                'My Requests'</p>
+        </div>
+        <button class="button-box" onclick="hideSuccessBox()"><h1 class="green">Great</h1></button>
+    </div>
+
+
+    <h4 class="font-weight-bold py-3 mb-4">
+        Account details
+    </h4>
+
+    <div class="card overflow-hidden">
+        <div class="row no-gutters row-bordered row-border-light">
+            <div class="col-md-3 pt-0">
+                <div class="list-group list-group-flush account-settings-links">
+                    <a class="list-group-item list-group-item-action active" data-toggle="list" href="#account-general">General</a>
+                    <a class="list-group-item list-group-item-action" data-toggle="list"
+                       href="#account-change-password">Change password</a>
+                    <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-connections"
+                       sec:authorize="hasAuthority('User')">My
+                        requests</a>
+
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="tab-content">
+                    <div class="tab-pane fade active show" id="account-general">
+                        <form th:action="@{/main/update_account_details}" method="post" th:object="${user}"
+                              enctype="multipart/form-data">
+                            <input type="hidden" th:field="*{id}"/>
+                            <div class="card-body media align-items-center">
+                                <img th:src="@{${user.photosImagePath}}" alt="" class="d-block ui-w-80"
+                                     id="profileImage">
+                                <div class="media-body ml-4">
+                                    <label for="fileInput" class="btn btn-outline-primary">
+                                        Upload new photo
+                                        <input type="file" name="profile_url" id="fileInput"
+                                               accept="image/png, image/jpeg" class="account-settings-fileinput">
+                                    </label>
+                                    <button type="button" class="btn btn-default md-btn-flat" onclick="resetImage()">
+                                        Reset
+                                    </button>
+
+                                    <div class="text-light small mt-1">Allowed JPEG or PNG. Max size of 100KB</div>
+                                </div>
+                            </div>
+                            <hr class="border-light m-0">
+
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label class="form-label">Name</label>
+                                    <input type="text" class="firstName form-control mb-1" th:field="*{firstName}">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Surname</label>
+                                    <input type="text" class="lastName form-control" th:field="*{lastName}">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">E-mail</label>
+                                    <input type="text" class="form-control mb-1" th:field="*{email}" readonly>
+                                </div>
+                            </div>
+
+                            <div class="text-right mt-3">
+                                <button type="submit" class="btn custom-button">Save changes</button>&nbsp;
+                            </div>
+                        </form>
+                    </div>
+                    <div class="tab-pane fade" id="account-change-password">
+                        <form th:action="@{/main/update_password}" method="post" th:object="${user}">
+                            <input type="hidden" class="form-control mb-1" name="email" th:field="*{email}" readonly>
+
+                            <div class="card-body pb-2">
+                                <div class="form-group">
+                                    <label class="form-label">Current password</label>
+                                    <div class="input-group">
+                                        <input type="password" class="form-control" name="currentPassword"
+                                               id="currentPassword" required>
+                                        <div class="input-group-append">
+                              <span class="input-group-text">
+                                <i class="toggle-password fas fa-eye" data-target="#currentPassword"></i>
+                              </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">New password</label>
+                                    <div class="input-group">
+                                        <input type="password" class="form-control" name="newPassword" id="newPassword"
+                                               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" minlength="8"
+                                               oninput="checkPasswordMatch(document.getElementById('confirmNewPassword'))"
+                                               required>
+                                        <div class="input-group-append">
+                              <span class="input-group-text">
+                                <i class="toggle-password fas fa-eye" data-target="#newPassword"></i>
+                              </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Confirm new password</label>
+                                    <div class="input-group">
+                                        <input type="password" class="form-control" name="confirmNewPassword"
+                                               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                               minlength="8"
+                                               oninput="checkPasswordMatch(this)" id="confirmNewPassword" required>
+                                        <div class="input-group-append">
+                              <span class="input-group-text">
+                                <i class="toggle-password fas fa-eye" data-target="#confirmNewPassword"></i>
+                              </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-right mt-3">
+                                <button type="submit" class="btn custom-button">Save changes</button>&nbsp;
+                            </div>
+
+                        </form>
+                    </div>
+
+                    <div class="tab-pane fade" id="account-connections">
+                        <div id="responseContainer" style="padding: 20px">
+                            <div class="table-container" id="tableContainer">
+                                <table id="responseTable">
+                                    <thead>
+                                    <tr>
+                                        <th>Name of Project</th>
+                                        <th>Applied Position</th>
+                                        <th>Date of application</th>
+                                        <th>Status</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody th:if="${#lists.isEmpty(myRequests)}">
+                                    <tr>
+                                        <td colspan="4" style="text-align: center; padding: 30px">You don't have any
+                                            project requests.
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                    <tbody th:unless="${#lists.isEmpty(myRequests)}">
+                                    <tr th:each="request : ${myRequests}">
+                                        <td th:text="${request.project.title}"></td>
+                                        <td th:text="${request.projectTeam.position}"></td>
+                                        <td th:text="${request.appliedTime}"></td>
+                                        <td th:switch="${request.status}">
+                                            <span th:case="0" style="color: #0024A2">Waiting</span>
+                                            <span th:case="1" style="color: #1a8a12">Accepted</span>
+                                            <span th:case="2" style="color: red">Rejected</span>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="account-notifications">
+                        <div class="card-body pb-2">
+
+                            <h6 class="mb-4">Activity</h6>
+
+                            <div class="form-group">
+                                <label class="switcher">
+                                    <input type="checkbox" class="switcher-input" checked="">
+                                    <span class="switcher-indicator">
+                            <span class="switcher-yes"></span>
+                            <span class="switcher-no"></span>
+                          </span>
+                                    <span class="switcher-label">Email me when someone comments on my article</span>
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="switcher">
+                                    <input type="checkbox" class="switcher-input" checked="">
+                                    <span class="switcher-indicator">
+                            <span class="switcher-yes"></span>
+                            <span class="switcher-no"></span>
+                          </span>
+                                    <span class="switcher-label">Email me when someone answers on my forum thread</span>
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="switcher">
+                                    <input type="checkbox" class="switcher-input">
+                                    <span class="switcher-indicator">
+                            <span class="switcher-yes"></span>
+                            <span class="switcher-no"></span>
+                          </span>
+                                    <span class="switcher-label">Email me when someone follows me</span>
+                                </label>
+                            </div>
+                        </div>
+                        <hr class="border-light m-0">
+                        <div class="card-body pb-2">
+
+                            <h6 class="mb-4">Application</h6>
+
+                            <div class="form-group">
+                                <label class="switcher">
+                                    <input type="checkbox" class="switcher-input" checked="">
+                                    <span class="switcher-indicator">
+                            <span class="switcher-yes"></span>
+                            <span class="switcher-no"></span>
+                          </span>
+                                    <span class="switcher-label">News and announcements</span>
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="switcher">
+                                    <input type="checkbox" class="switcher-input">
+                                    <span class="switcher-indicator">
+                            <span class="switcher-yes"></span>
+                            <span class="switcher-no"></span>
+                          </span>
+                                    <span class="switcher-label">Weekly product updates</span>
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="switcher">
+                                    <input type="checkbox" class="switcher-input" checked="">
+                                    <span class="switcher-indicator">
+                            <span class="switcher-yes"></span>
+                            <span class="switcher-no"></span>
+                          </span>
+                                    <span class="switcher-label">Weekly blog digest</span>
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/js/type.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#fileInput").change(function () {
+            fileSize = this.files[0].size;
+
+            if (fileSize > 102400) {
+                this.setCustomValidity("You must choose an image less than 100KB!");
+                this.reportValidity();
+            } else {
+                this.setCustomValidity("");
+                showImageThumbnail(this);
+            }
+
+        });
+    });
+
+    function showImageThumbnail(fileInput) {
+        var file = fileInput.files[0];
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $("#profileImage").attr("src", e.target.result);
+        };
+
+        reader.readAsDataURL(file);
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const togglePasswordIcons = document.querySelectorAll('.toggle-password');
+
+        togglePasswordIcons.forEach(icon => {
+            icon.addEventListener('click', function () {
+                const targetId = this.getAttribute('data-target');
+                const passwordInput = document.querySelector(targetId);
+
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    this.classList.remove('fa-eye');
+                    this.classList.add('fa-eye-slash');
+                } else {
+                    passwordInput.type = 'password';
+                    this.classList.remove('fa-eye-slash');
+                    this.classList.add('fa-eye');
+                }
+            });
+        });
+    });
+
+
+    function resetImage() {
+        document.getElementById('profileImage').src = '/profileImg/user-default.png';
+
+
+        document.getElementsByClassName('profile_url').value = '';
+    }
+
+    function checkPasswordMatch(confirmPassword) {
+        const psw = document.getElementById('newPassword');
+        if (confirmPassword.value !== psw.value) {
+            confirmPassword.setCustomValidity("Passwords do not match!");
+        } else {
+            confirmPassword.setCustomValidity("");
+        }
+    }
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+        console.log("DOMContentLoaded event fired");
+        const el = document.querySelector(".hero_title31");
+        el.style.setProperty("--num", 1);
+        el.classList.add("counting-effect");
+    });
+
+    const dropdown = document.querySelector('.custom-dropdown');
+    const dropdownContent = document.querySelector('.custom-dropdown-content');
+
+    dropdown.addEventListener('click', function (event) {
+        dropdownContent.classList.toggle('show');
+    });
+
+    function hideSuccessBox() {
+        var successBox = document.getElementById('success-box');
+        if (successBox) {
+            successBox.style.display = 'none';
+        }
+    }
+
+    function hideErrorBox() {
+        var errorBox = document.getElementById('error-box');
+        if (errorBox) {
+            errorBox.style.display = 'none';
+        }
+    }
+</script>
+</body>
+</html>

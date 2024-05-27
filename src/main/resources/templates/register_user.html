@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
+    <link rel="stylesheet" type="text/css"
+          href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tingle.js/dist/tingle.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/Registration.css"/>
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+
+    <title>Register</title>
+</head>
+<body>
+<div class="form_wrapper">
+    <div class="password_clauses">
+        <h3>Hint for Password:</h3>
+        <div class="clause" id="uppercase-clause">At least one uppercase letter</div>
+        <div class="clause" id="lowercase-clause">At least one lowercase letter</div>
+        <div class="clause" id="digit-clause">At least one digit</div>
+        <div class="clause" id="length-clause">Minimum length of 8 characters</div>
+    </div>
+    <div class="form_container">
+        <div class="title_container">
+            <h2>Register</h2>
+        </div>
+        <div class="row clearfix">
+            <div class="">
+                <form th:action="@{'/auth/register'}" method="post">
+                    <div class="input_field"><span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+                        <input type="email" name="reg_email" placeholder="Email" required/>
+                    </div>
+                    <div class="input_field">
+                        <span><i aria-hidden="true" class="fa fa-lock"></i></span>
+                        <input type="password" id="psw" name="reg_password" placeholder="Password"
+                               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" minlength="8"
+                               oninput="checkPasswordMatch(this, document.getElementById('confirmPassword'))" required/>
+                    </div>
+                    <span class="eye-icon" id="togglePassword" style="position: absolute; right: 33px; top: 43.7%; transform: translateY(-50%);"><i aria-hidden="true" class="fa fa-eye"></i></span>
+                    <div class="input_field">
+                        <span><i aria-hidden="true" class="fa fa-lock"></i></span>
+                        <input type="password" id="confirmPassword" name="reg_confPassword"
+                               placeholder="Re-type Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                               minlength="8"
+                               oninput="checkPasswordMatch(this)" required/>
+                    </div>
+                    <span class="eye-icon" id="togglePasswordVisibility" style="position: absolute; right: 33px; top: 52%; transform: translateY(-50%);"><i aria-hidden="true" class="fa fa-eye"></i></span>
+                    <div class="row clearfix">
+                        <div class="col_half">
+                            <div class="input_field"><span><i aria-hidden="true" class="fa fa-user"></i></span>
+                                <input type="text" name="name" placeholder="First Name"/>
+                            </div>
+                        </div>
+                        <div class="col_half">
+                            <div class="input_field"><span><i aria-hidden="true" class="fa fa-user"></i></span>
+                                <input type="text" name="surname" placeholder="Last Name" required/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input_field select_option">
+                        <label>
+                            <select id="role" name="role">
+                                <option>Select a positioning role</option>
+                                <option value="User">Client</option>
+                                <option value="Investor">Investor</option>
+                            </select>
+                        </label>
+                        <div class="select_arrow"></div>
+                    </div>
+                    <div class="input_field checkbox_option">
+                        <input type="checkbox" id="cb1" required>
+                        <label for="cb1">
+                            I agree with
+                            <span style="color: blue; cursor: pointer;" onclick="openPrivacyPolicy()">terms and conditions</span>
+                        </label>
+                    </div>
+                    <div class="input_field checkbox_option">
+                        <input type="checkbox" id="cb2" required>
+                        <label for="cb2">I agree to the personal data processing</label>
+                    </div>
+                    <input class="button" type="submit" value="Register"/>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<p class="credit">Are you already a member? <a th:href="@{'/auth/login'}">Let's login</a></p>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tingle.js/dist/tingle.min.js"></script>
+<script type="text/javascript">
+    function checkPasswordClauses(password) {
+        const uppercaseClause = document.getElementById('uppercase-clause');
+        const lowercaseClause = document.getElementById('lowercase-clause');
+        const digitClause = document.getElementById('digit-clause');
+        const lengthClause = document.getElementById('length-clause');
+
+        const uppercaseRegex = /[A-Z]/;
+        const lowercaseRegex = /[a-z]/;
+        const digitRegex = /\d/;
+
+
+        if (uppercaseRegex.test(password)) {
+            uppercaseClause.classList.add('correct');
+        } else {
+            uppercaseClause.classList.remove('correct');
+        }
+
+
+        if (lowercaseRegex.test(password)) {
+            lowercaseClause.classList.add('correct');
+        } else {
+            lowercaseClause.classList.remove('correct');
+        }
+
+        if (digitRegex.test(password)) {
+            digitClause.classList.add('correct');
+        } else {
+            digitClause.classList.remove('correct');
+        }
+
+        if (password.length >= 8) {
+            lengthClause.classList.add('correct');
+        } else {
+            lengthClause.classList.remove('correct');
+        }
+    }
+
+    function initializePasswordClauses() {
+        const psw = document.getElementById('psw');
+        checkPasswordClauses(psw.value);
+    }
+
+
+    window.addEventListener('load', initializePasswordClauses);
+
+
+    function checkPasswordMatch(passwordField, confirmPassword) {
+        const psw = passwordField;
+        if (confirmPassword.value !== psw.value) {
+            confirmPassword.setCustomValidity("Passwords do not match!");
+        } else {
+            confirmPassword.setCustomValidity("");
+        }
+        checkPasswordClauses(psw.value);
+    }
+
+
+    document.getElementById('psw').addEventListener('input', function () {
+        checkPasswordClauses(this.value);
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var togglePasswordButton = document.getElementById('togglePassword');
+        var passwordInput = document.querySelector('.input_field input[type="password"]');
+        var eyeIcon = togglePasswordButton.querySelector('i');
+
+        togglePasswordButton.addEventListener('click', function() {
+            togglePasswordVisibility(passwordInput, eyeIcon);
+        });
+
+        var toggleConfirmPasswordButton = document.getElementById('togglePasswordVisibility');
+        var confirmPasswordInput = document.getElementById('confirmPassword');
+        var confirmEyeIcon = toggleConfirmPasswordButton.querySelector('i');
+
+        toggleConfirmPasswordButton.addEventListener('click', function() {
+            togglePasswordVisibility(confirmPasswordInput, confirmEyeIcon);
+        });
+
+        function togglePasswordVisibility(inputField, iconElement) {
+            if (inputField.type === 'password') {
+                inputField.type = 'text';
+                iconElement.classList.remove('fa-eye');
+                iconElement.classList.add('fa-eye-slash');
+            } else {
+                inputField.type = 'password';
+                iconElement.classList.remove('fa-eye-slash');
+                iconElement.classList.add('fa-eye');
+            }
+
+            iconElement.addEventListener('mouseleave', function() {
+                if (inputField.type === 'text') {
+                    inputField.type = 'password';
+                    iconElement.classList.remove('fa-eye-slash');
+                    iconElement.classList.add('fa-eye');
+                }
+            });
+        }
+    });
+
+    var modal = new tingle.modal({
+        footer: false,
+        closeMethods: ['overlay', 'button'], // Allow closing by clicking overlay (outside modal) or button
+        closeLabel: "Close",
+        cssClass: ['modal-container']
+    });
+
+    var privacyText = '<span class="modal-title">Privacy Policy</span>'+
+        '<p>Domain takes your privacy extremely seriously.</p>'+
+        '<p>You may not have noticed, but we didn\'t show you one of those annoying popup cookie notices. That\'s because we don\'t track you, or allow any third parties to either.</p>'+
+        '<p>Your answers are stored completely anonymously in our database.</p>'+
+        '<p>We built our own analytics service from scratch to make sure no one is doing stuff with your data that you haven\'t explicitly agreed to.</p>'+
+        '<p>Later on, if you create a Domain account, we\'ll ask you for specific permissions to process your data. In the meantime, enjoy the game and rest easy knowing we are not storing anything anywhere that could be used to identify you.</p>'+
+        '<p>Read our full Privacy Policy at <a href="www.domain.com">www.domain.com</a></p>';
+
+    modal.setContent(privacyText);
+
+    function openPrivacyPolicy() {
+        modal.open();
+    }
+
+    // Close modal when clicking outside of it (overlay)
+    modal.overlay.addEventListener('click', function() {
+        modal.close();
+    });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+          integrity="sha512-fvVGrO69KYlz0tjRGrOpRsdZIb6HemjSzExD9qQCeTtF8Zq4p21F5V32vlQ+8bXC7ZZIgAEbaHOcyEg6UeVs8A=="
+          crossorigin="anonymous"/>
+    <link rel="stylesheet" type="text/css"
+          href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"/>
+
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/common.css"/>
+    <!-- <link rel="stylesheet" type="text/css" href="./css/fonts.css" /> -->
+    <link rel="stylesheet" type="text/css" href="/css/Basket.css"/>
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+
+    <title>Basket Page for Investor</title>
+</head>
+
+
+<body onload="showBasicDataTab()">
+<header class="header">
+    <section class="section1" style="--src:url(/img/0502f0f63cc56790c6952133ae2b1481.png)">
+        <div class="content_box">
+
+            <div class="searchBox">
+                <input class="searchInput" type="text" name="" placeholder="Search">
+                <button class="searchButton" href="#">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+            <a class="subtitle1" th:href="@{'/main/'}"><h3>STELLAR<br/>INVESTMENT</h3></a>
+
+            <a class="subtitle2" th:href="@{'/investor/all/projects/'}"><h3>Projects</h3></a>
+            <a class="subtitle21" th:href="@{'/main/'}"><h3>Home</h3></a>
+            <img class="image4" src="/img/ace06293b0d4076285adfa86c63156ab.png" alt=""/>
+            <div class="dropdown">
+                <img class="box" th:src="@{${user.photosImagePath}}" alt="alt text" onclick="toggleDropdown()">
+                <div id="myDropdown" class="dropdown-content">
+                    <a th:href="@{'/main/account_details'}">My Profile</a>
+                    <a th:href="@{'/investor/my/investments'}">My Investments</a>
+                    <a href="JavaScript:void(0)" onclick="singOutForm.submit()">Log Out
+                        <form th:action="@{'/logout'}" method="post" id="singOutForm"></form>
+                    </a>
+                </div>
+            </div>
+
+            <a th:href="@{'/investor/basket/'}">
+                <div class="wrapper5" style="--src:url(/img/purchase.png)"></div>
+            </a>
+
+        </div>
+    </section>
+</header>
+
+<main class="kaif main">
+    <section class="orders">
+        <div class="container">
+            <div class="dav">
+                <h1>List of My Chosen Projects</h1>
+            </div>
+
+            <div id="success-box" th:if="${param.added != null}">
+                <div class="dot"></div>
+                <div class="dot two"></div>
+                <div class="face">
+                    <div class="eye"></div>
+                    <div class="eye right"></div>
+                    <div class="mouth happy"></div>
+                </div>
+                <div class="shadow scale"></div>
+                <div class="message">
+                    <h1 class="alert">Successfully added to the basket!</h1>
+                    <p>Proceed with further actions here.</p>
+                </div>
+                <button class="button-box" onclick="hideSuccessBox()"><h1 class="green">Great</h1></button>
+            </div>
+
+            <div id="error-box" th:if="${param.deleted != null}">
+                <div class="dot"></div>
+                <div class="dot two"></div>
+                <div class="face2">
+                    <div class="eye"></div>
+                    <div class="eye right"></div>
+                    <div class="mouth sad"></div>
+                </div>
+                <div class="shadow move"></div>
+                <div class="message">
+                    <h1 class="alert">Deleted from basket!</h1>
+                    <p>You can see another investments in 'Project'</p>
+                </div>
+                <button class="button-box" onclick="hideErrorBox()"><h1 class="red">Okay</h1></button>
+            </div>
+
+
+            <div class="tab-content existing-projects" th:if="${investments.isEmpty()}">
+                <p style="text-align: center;
+               font-size: 20px;
+               padding: 20px;">No projects you've chosen to investment</p>
+            </div>
+
+            <div id="existing-projects" class="tab-content existing-projects" th:each="investment : ${investments}">
+                <div id="myModal" class="modal">
+
+                    <div class="modal-content">
+                        <a class="close" href="javascript:void(0);" onclick="closeModal();">&times;</a>
+                        <h2>Total Amount</h2>
+                        <h2 id="calculatedAmount"></h2>
+
+                        <div class="content">
+
+                            <form id="investmentForm" th:action="@{/investor/invest}" method="post">
+                                <input type="hidden" name="investmentId" th:value="${investment.id}">
+                                <input type="hidden" name="investmentMoney" id="investmentMoney">
+                                <div class="options-container">
+                                    <label for="bankOptions">Select a bank:</label>
+                                    <div id="bankOptions">
+                                        <div class="bank-option">
+                                            <input type="radio" id="kapsiBank" name="bank" value="Kaspi Bank"
+                                                   onclick="showBankImage(this.value)">
+                                            <label for="kapsiBank">
+                                                <img src="/img/images.jpeg" alt="Kaspi Bank">
+                                            </label>
+
+                                        </div>
+                                        <div class="bank-option">
+                                            <input type="radio" id="halykBank" name="bank" value="Halyk Bank"
+                                                   onclick="showBankImage(this.value)">
+                                            <label for="halykBank">
+                                                <img src="/img/images.png" alt="Halyk Bank">
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                        <div id="image2" style="display: none;">
+                            <div class="image-container">
+                                <img class="image" src="/img/payment_qr_code_example.png" alt="Image 2">
+                            </div>
+                        </div>
+
+                        <div id="image3" style="display: none;">
+                            <div class="image-container">
+                                <img class="image" src="/img/код-нар-банка-20.06.2023.jpg" alt="Image 3">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <table id="existing-table" class="main_table">
+                    <thead>
+                    <tr>
+                        <th>№</th>
+                        <th>Description of the project</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td th:text="${investment.project.id}"></td>
+                        <td>
+                            <div class="cards_item">
+                                <div class="image">
+                                    <img th:src="@{${investment.project.getMainImagePath}}">
+                                </div>
+                                <div class="text">
+                                    <div class="text_item">
+                                        <h3>Title:</h3>
+                                        <p th:text="${investment.project.title}"></p>
+                                    </div>
+                                    <div class="text_item">
+                                        <h3>Brief Info:</h3>
+                                        <p th:text="${investment.project.shortDescription}"></p>
+                                    </div>
+                                    <div class="text_item">
+                                        <h3>Chosen Tariff:</h3>
+                                        <input type="hidden" id="tariffAmount"
+                                               th:value="${investment.projectTariff.tariffAmount}">
+                                        <p th:text="${investment.projectTariff.tariffName} + ' amount is ' + ${investment.projectTariff.tariffAmount}"></p>
+                                    </div>
+                                </div>
+                                <div class="amount-container">
+                                    <button onclick="decrementAmount(this)">&minus;</button>
+                                    <span class="amount" id="selectedAmount">1</span>
+                                    <button onclick="incrementAmount(this)">+</button>
+                                </div>
+                                <div class="content_box2">
+                                    <a th:href="@{'/investor/details/'+${investment.project.id}}">
+                                        <button class="accept">Details</button>
+                                    </a>
+                                    <form th:action="@{/investor/deleteFromBasket}" method="post">
+                                        <input type="hidden" name="investmentId" th:value="${investment.id}">
+                                        <button type="submit" class="wrapper1">Remove</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <button class="qr" href="javascript:void(0);" onclick="openModal();">Pay by QR code</button>
+            </div>
+
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="container2">
+        <div class="footerNav">
+            <div class="logoFooter">
+                <img src="/img/logo.svg" alt="#">
+                <a href="#">STELLAR INVESTMENT</a>
+            </div>
+            <ul class="eachNav">
+                <li>
+                    <img src="/img/geo.svg" alt="#">
+                    <p style="width: 300px;">microdistrict Daraboz, home 123, Almaty, Kazakhstan</p>
+                </li>
+                <li>
+                    <img src="/img/mail.svg" alt="#">
+                    <p>contact@almightypush.com</p>
+                </li>
+                <li>
+                    <img src="/img/phone.svg" alt="#">
+                    <p>+7 775 203 01 90</p>
+                </li>
+            </ul>
+        </div>
+        <p class="year">© 2024 Stellar Investment. All Rights Reserved.</p>
+    </div>
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+
+    const dropdown = document.querySelector('.dropdown');
+    const dropdownContent = document.querySelector('.dropdown-content');
+
+    dropdown.addEventListener('click', function (event) {
+        dropdownContent.classList.toggle('show');
+    });
+
+    $(document).ready(function () {
+        $('.nav li').click(function () {
+            $('.nav li').removeClass('active');
+
+            $(this).addClass('active');
+        });
+    });
+
+
+    let timer;
+
+    function openModal() {
+        const amount = parseInt(document.getElementById('selectedAmount').textContent);
+        const tariffAmount = parseInt(document.getElementById('tariffAmount').value);
+        const calculatedAmount = amount * tariffAmount;
+        document.getElementById('calculatedAmount').textContent = "₸" + calculatedAmount;
+        document.getElementById('investmentMoney').value = calculatedAmount;
+        document.getElementById("myModal").style.display = "block";
+    }
+
+    function submitForm() {
+        document.getElementById('investmentForm').submit();
+    }
+
+    function closeModal() {
+        document.getElementById("myModal").style.display = "none";
+        clearTimeout(timer);
+    }
+
+    function showBankImage(selectedValue) {
+        if (selectedValue === "Kaspi Bank") {
+            document.getElementById("image2").style.display = "block";
+            document.getElementById("image3").style.display = "none";
+        } else if (selectedValue === "Halyk Bank") {
+            document.getElementById("image2").style.display = "none";
+            document.getElementById("image3").style.display = "block";
+        } else {
+            document.getElementById("image2").style.display = "none";
+            document.getElementById("image3").style.display = "none";
+        }
+
+        timer = setTimeout(submitForm, 10000);
+    }
+
+
+    function incrementAmount(button) {
+        var amount = button.parentElement.querySelector(".amount");
+        var value = parseInt(amount.innerText);
+        value += 1;
+        amount.innerText = value;
+    }
+
+    function decrementAmount(button) {
+        var amount = button.parentElement.querySelector(".amount");
+        var value = parseInt(amount.innerText);
+        if (value > 1) {
+            value -= 1;
+            amount.innerText = value;
+        }
+    }
+
+    function hideSuccessBox() {
+        var successBox = document.getElementById('success-box');
+        if (successBox) {
+            successBox.style.display = 'none';
+        }
+    }
+
+    function hideErrorBox() {
+        var errorBox = document.getElementById('error-box');
+        if (errorBox) {
+            errorBox.style.display = 'none';
+        }
+    }
+</script>
+
+</body>
+
+</html>

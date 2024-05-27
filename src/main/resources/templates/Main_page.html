@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-fvVGrO69KYlz0tjRGrOpRsdZIb6HemjSzExD9qQCeTtF8Zq4p21F5V32vlQ+8bXC7ZZIgAEbaHOcyEg6UeVs8A==" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+
+
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <link rel="stylesheet" type="text/css" href="/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="/css/fonts.css" />
+    <link rel="stylesheet" href="/css/Main_page.css">
+    <title>Stellar</title>
+</head>
+<body>
+<header class="custom-header">
+    <section class="section1" style="--src:url(/img/0502f0f63cc56790c6952133ae2b1481.png)">
+        <div class="content_box">
+
+            <div class="searchBox">
+                <input class="searchInput" type="text" name="" placeholder="Search">
+                <button class="searchButton" href="#">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+            <div class="rect1"></div>
+
+            <a class="subtitle1" href=""><h3>STELLAR<br/>INVESTMENT</h3></a>
+
+            <a class="subtitle2" th:href="@{'/project/all/team/'}" sec:authorize="hasAuthority('User')"><h3>
+                Projects</h3></a>
+            <a class="subtitle2" th:href="@{'/investor/all/projects/'}" sec:authorize="hasAuthority('Investor')"><h3>
+                Projects</h3></a>
+            <a class="subtitle21" href=""><h3>Home</h3></a>
+
+            <img class="image4" src="/img/ace06293b0d4076285adfa86c63156ab.png" alt=""/>
+            <div class="custom-dropdown" sec:authorize="isAuthenticated()">
+                <th:block th:if="${user != null}">
+                    <img class="custom-box" th:src="@{${user.photosImagePath}}" alt="alt text"
+                         onclick="toggleCustomDropdown()">
+
+                    <div id="myCustomDropdown" class="custom-dropdown-content">
+                        <a th:href="@{'/main/account_details'}">My Profile</a>
+                        <a sec:authorize="hasAuthority('Admin')"
+                           th:href="@{'/admin/projects'}">Manage projects</a>
+                        <a th:href="@{'/project/my/'}"
+                           sec:authorize="hasAuthority('User')">Project Applications</a>
+                        <a th:href="@{'/project/my/created/'}"
+                           sec:authorize="hasAuthority('User')">My Projects</a>
+                        <a th:href="@{'/project/'}" sec:authorize="hasAuthority('User')">Create Projects</a>
+                        <a sec:authorize="hasAuthority('Investor')"
+                           th:href="@{'/investor/my/investments'}">My Investments</a>
+                        <a href="JavaScript:void(0)" onclick="singOutForm.submit()">Log
+                            Out
+                            <form th:action="@{'/logout'}" method="post" id="singOutForm"></form>
+                        </a>
+                    </div>
+                </th:block>
+            </div>
+
+            <div class="custom-dropdown" sec:authorize="!isAuthenticated()">
+                <a th:href="@{'/auth/login'}">
+                    <button class="custom-box"
+                            style="background-color: #ff7f50;
+               color: white;
+               border: none;
+               width: 90px;
+               height: 50px;
+               border-radius: 15px;
+               cursor: pointer;">
+                        <strong>Login</strong>
+                    </button>
+                </a>
+            </div>
+
+            <a th:href="@{'/investor/basket/'}" sec:authorize="hasAuthority('Investor')">
+                <div class="wrapper5" style="--src:url(/img/purchase.png)"></div>
+            </a>
+
+        </div>
+    </section>
+</header>
+<section class="exampleCard">
+    <div class="container">
+        <div class="cards">
+            <img src="/img/917681335b0fd9727686007b50f6b668.png" alt="#"
+                 style="display: block; border-radius: 40px 0 0 40px; width: 100%; margin-right: -30px;">
+            <div class="card_info">
+                <div class="company-logo">
+                    <img src="/img/snimok.png" alt="#">
+                    <div class="companyMoney">
+                        <div class="money" style="padding: 10px;">
+                            ₸ 509,821 Raised
+                        </div>
+                        <div class="progression" style="padding: 10px;">
+                            <progress id="file" max="100" value="70">70%</progress>
+                        </div>
+                        <div class="info">
+                            <div class="investors">
+                                996 investors
+                            </div>
+                            <div class="target">
+                                70% of target
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text">
+                    <h4 style="color: #23424A; padding-bottom: 5px;">Perplexity AI</h4>
+                    <p style="font-size: 20px; line-height: 31px; color: #3B707D;">
+                        is a powerful tool that leverages language models to provide accurate answers and information
+                        without the need for complex technical expertise. It is designed..
+                    </p>
+                </div>
+                <div class="date">
+                    <div class="days">
+                        <button type="button" class="btn"
+                                style="width: 203px; border-radius: 10px; font-weight: bold; background-color: #F2F2F7; color: #000;">
+                            12 days remaining
+                        </button>
+                    </div>
+                    <div class="tarif">
+                        <button type="button" class="btn"
+                                style="width: 110px; border-radius: 10px; background-color: #22424A; color: #fff;">
+                            Tariffs
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="startInvest">
+    <div class="container3">
+        <div class="item-container" th:each="project : ${projects}">
+            <div class="img-container">
+                <img th:src="@{${project.getMainImagePath}}" alt="Event image">
+            </div>
+
+            <div class="body-container">
+                <div class="overlay"></div>
+
+                <div class="event-info">
+                    <p class="title" th:text="${project.title}"></p>
+                    <div class="separator">
+                        <div class="progress" style="margin-top: 15px; height: 25px; border-radius: 25px;">
+                            <div class="progress-bar" role="progressbar"
+                                 th:style="'width: ' + ${100} + '%; background-color: #23424A; font-size: 20px;'"
+                                 th:text="${project.percent} + '%'" th:if="${project.percent == 0}" aria-valuemin="0"
+                                 aria-valuemax="100"></div>
+                            <div class="progress-bar" role="progressbar"
+                                 th:style="'width: ' + ${project.percent} + '%; background-color: #ff7f50; font-size: 20px;'"
+                                 th:text="${project.percent} + '%'" th:if="${project.percent != 0}" aria-valuemin="0"
+                                 aria-valuemax="100"></div>
+                            <div class="progress-bar" role="progressbar"
+                                 th:style="'width: ' + (100 - ${project.percent}) + '%; background-color: #23424A; font-size: 20px;'"
+                                 th:text="${100 - project.percent} + '%'" th:if="${project.percent != 0}"
+                                 aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+
+                    <p class="price" th:text="${'₸' + project.amountNeeded}"></p>
+
+                    <div class="additional-info">
+                        <p class="info" style="justify-content: center; align-items: center">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Kazakhstan
+                        </p>
+                        <p class="info" style="justify-content: center; align-items: center"
+                           th:text="${'Till ' + project.finishTime}">
+                            <i class="far fa-calendar-alt"></i>
+                        </p>
+
+                        <p class="info description" th:text="${project.shortDescription}"
+                           style="height: 120px; overflow: scroll">
+                        </p>
+                    </div>
+                </div>
+                <th:block th:if="${roles != null}">
+                    <th:block th:if="${roles.contains('User')}">
+                        <a th:href="@{'/project/details/' + ${project.id}}">
+                            <button class="action">In detail</button>
+                        </a>
+                    </th:block>
+                    <th:block th:if="${roles.contains('Investor')}">
+                        <a th:href="@{'/investor/details/' + ${project.id}}">
+                            <button class="action">In detail</button>
+                        </a>
+                    </th:block>
+                    <th:block th:if="${roles.contains('Admin')}">
+                        <a th:href="@{'/admin/details/' + ${project.id}}">
+                            <button class="action">In detail</button>
+                        </a>
+                    </th:block>
+                </th:block>
+
+                <th:block th:unless="${roles != null}">
+                    <a th:href="@{'/project/details/' + ${project.id}}">
+                        <button class="action">In detail</button>
+                    </a>
+                </th:block>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="aboutCompany">
+    <div class="container">
+        <div class="aboutInfo">
+            <div class="textPart">
+                <div class="textAbout">
+                    <h3>Since 2013, we’ve kept  <span> impressive </span> company</h3>
+                    <p>
+                        In that time we’ve helped raise over ₸1.4 billion for over 1,300 mission-driven businesses and
+                        built up a community of over 1.7 million members. More recently than that we had…
+                    </p>
+                </div>
+                <div class="row row-cols-2">
+                    <div class="numbersEach">
+                        <p>NEW MEMBERS LAST MONTH</p>
+                        <h3>4040</h3>
+                    </div>
+                    <div class="numbersEach">
+                        <p>UNIQUE INVESTMENTS LAST MONTH</p>
+                        <h3>3990</h3>
+                    </div>
+                    <div class="numbersEach">
+                        <p>TOTAL INVESTED LAST MONTH</p>
+                        <h3>₸2.1m</h3>
+                    </div>
+                    <div class="numbersEach">
+                        <p>TOTAL INVESTED LAST MONTH</p>
+                        <h3>190k</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="photoCompanies">
+                <div class="row row-cols-2" style="position: relative;">
+                    <div class="col"><img src="/img/a202e842d2c8bbd95651b4648662c3b0.png" alt=""></div>
+                    <div class="col"><img src="/img/a202e842d2c8bbd95651b4648662c3b0.png" alt=""></div>
+                    <div class="col"><img src="/img/a202e842d2c8bbd95651b4648662c3b0.png" alt=""></div>
+                    <div class="col"><img src="/img/a202e842d2c8bbd95651b4648662c3b0.png" alt=""></div>
+                    <div class="col"><img src="/img/a202e842d2c8bbd95651b4648662c3b0.png" alt=""></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="join">
+    <div class="container">
+        <h1 style="font-size: 40px; color: #FF8055; padding-bottom: 60px;">
+            Our Happy Journey Grew With Them!
+        </h1>
+        <section class="customer-logos slider">
+            <div class="slide"><img src="/img/joinTeam1.png">
+            </div>
+
+            <div class="slide"><img src="/img/joinTeam2.png">
+            </div>
+
+            <div class="slide"><img src="/img/joinTeam1.png">
+            </div>
+
+            <div class="slide"><img src="/img/joinTeam2.png">
+            </div>
+
+            <div class="slide"><img src="/img/joinTeam1.png">
+            </div>
+
+            <div class="slide"><img src="/img/joinTeam2.png">
+            </div>
+
+            <div class="slide"><img src="/img/joinTeam1.png">
+            </div>
+
+            <div class="slide"><img src="/img/joinTeam2.png">
+            </div>
+        </section>
+    </div>
+</section>
+<section class="review">
+    <div class="container">
+        <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active" style="padding: 40px">
+                    <h3 style="margin-bottom: 35px; font-size: 40px;">What People Say</h3>
+                    <img src="/img/img.png" class="d-block" alt="#">
+                    <p style="font-size: 20px; margin-bottom: 10px;">Sarah</p>
+                    <p style="font-size: 14px; margin-bottom: 32px;">Recent Graduate</p>
+                    <p class="reviewText">
+                        As a recent graduate, I struggled to find job opportunities in my field due to my lack of
+                        practical experience. 'Stellar Investment' changed the game for me. I was able to join a project
+                        team in my area of interest and gain valuable hands-on experience while collaborating with
+                        experienced professionals.
+                    </p>
+                </div>
+                <div class="carousel-item" style="padding: 40px">
+                    <h3 style="margin-bottom: 35px; font-size: 40px;">What People Say</h3>
+                    <img src="/img/img_1.png" class="d-block" alt="#">
+                    <p style="font-size: 20px; margin-bottom: 10px;">John</p>
+                    <p style="font-size: 14px; margin-bottom: 32px;">Investor</p>
+                    <p class="reviewText">
+                        I've been looking for ways to diversify my investment portfolio, but I was hesitant to invest in
+                        traditional avenues due to the high entry barriers. 'Stellar Investment' offered me a unique
+                        opportunity to support innovative projects while mitigating risks. The platform's transparent
+                        communication and project vetting process gave me confidence in my investment decisions.
+                    </p>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+                    data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="false"></span>
+                <span class="visually-hidden"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+                    data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden"></span>
+            </button>
+        </div>
+    </div>
+</section>
+<section class="FAQ">
+    <div class="container">
+        <div class="contents">
+            <div class="faqPhoto" style="border: 20px solid #65A9A6;">
+                <img src="/img/ourCompany.jpg" alt="#" style="width: 400px;">
+            </div>
+            <div class="accordion">
+                <div class="accordion_wrap accordion_1" id="quests">
+                    <div class="header-item">
+                        How does "Stellar Investment" ensure project quality?
+                    </div>
+                    <div class="text">
+                        <p>Stellar Investment" employs a rigorous vetting process for project submissions, ensuring that
+                            only high-quality and legitimate projects are listed on the platform. Additionally,
+                            third-party oversight helps maintain integrity and compliance with regulatory standards.</p>
+                    </div>
+                </div>
+                <div class="accordion_wrap accordion_2" id="quests">
+                    <div class="header-item">
+                        What experience level is required to join projects?
+                    </div>
+                    <div class="text">
+                        <p>"Stellar Investment" is open to individuals of all experience levels, from beginners to
+                            experts. Whether you're looking to gain practical experience or contribute your expertise to
+                            a project, there are opportunities available for everyone.</p>
+                    </div>
+                </div>
+                <div class="accordion_wrap accordion_3" id="quests">
+                    <div class="header-item">
+                        How do investors choose which projects to fund?
+                    </div>
+                    <div class="text">
+                        <p>Investors on "Stellar Investment" have the flexibility to browse through various project
+                            listings and choose the ones that align with their interests, goals, and risk preferences.
+                            Each project listing provides detailed information to help investors make informed
+                            decisions.</p>
+                    </div>
+                    <div class="accordion_wrap accordion_3" id="quests">
+                        <div class="header-item">
+                            What role does the admin play on the platform?
+                        </div>
+                        <div class="text">
+                            <p>The admin oversees the overall functioning of the platform, ensuring smooth communication
+                                between stakeholders, enforcing compliance with rules and regulations, and addressing
+                                any issues or concerns that may arise. Admin control helps maintain integrity and
+                                efficiency throughout the platform.</p>
+                        </div>
+                    </div>
+                    <div class="accordion_wrap accordion_3" id="quests">
+                        <div class="header-item">
+                            Can I create my own project on "Stellar Investment"?
+                        </div>
+                        <div class="text">
+                            <p>Yes, absolutely! "Stellar Investment" encourages users to create their own projects or
+                                collaborate with others on team projects. Whether you have a unique idea you want to
+                                bring to life or you're looking to work with others on a shared vision, you can create
+                                and manage your projects on the platform.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bot">
+            <h3 style="font-size: 24px;">If you have additional questions, you can use the chatbot <span> <img
+                    src="/img/botArrow.svg" alt=""></span></h3>
+            <div class="bot_detail" style="text-align: center;">
+                <img src="/img/bot.svg" alt="#" style="margin-bottom: 18px;">
+                <p style="font-size: 20px;">You need a help?</p>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="container2">
+        <div class="footerNav">
+            <div class="logoFooter">
+                <img src="/img/logo.svg" alt="#">
+                <a href="#">STELLAR INVESTMENT</a>
+            </div>
+            <ul class="eachNav">
+                <li>
+                    <img src="/img/geo.svg" alt="#">
+                    <p style="width: 300px;">microdistrict Daraboz, home 123, Almaty, Kazakhstan</p>
+                </li>
+                <li>
+                    <img src="/img/mail.svg" alt="#">
+                    <p>contact@almightypush.com</p>
+                </li>
+                <li>
+                    <img src="/img/phone.svg" alt="#">
+                    <p>+7 775 203 01 90</p>
+                </li>
+            </ul>
+        </div>
+        <p class="year">© 2024 Stellar Investment. All Rights Reserved.</p>
+    </div>
+</footer>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+<script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
+<!-- FAQ script -->
+<script type="text/javascript">
+    $(".header-item").click(function () {
+        $(".header-item").removeClass("active");
+        $(this).addClass("active");
+    });
+    const dropdown = document.querySelector('.custom-dropdown');
+    const dropdownContent = document.querySelector('.custom-dropdown-content');
+
+    dropdown.addEventListener('click', function (event) {
+
+        dropdownContent.classList.toggle('show');
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const textElement = document.getElementById('impressiveText');
+        const text = 'impressive';
+        let index = 0;
+        const typingInterval = 200; // Typing speed in milliseconds per letter (slower)
+        const countIncrement = 50; // Counting speed in milliseconds per increment (slower)
+
+        const startNumber1 = 0;
+        const endNumber1 = 4040;
+        const startNumber2 = 0;
+        const endNumber2 = 3990;
+
+        let currentNumber1 = startNumber1;
+        let currentNumber2 = startNumber2;
+
+        // Typing effect function
+        function typeText() {
+            if (index < text.length) {
+                textElement.textContent += text[index];
+                index++;
+                setTimeout(typeText, typingInterval);
+            }
+        }
+
+        // Number counting function
+        function countNumbers() {
+            if (currentNumber1 <= endNumber1) {
+                document.getElementById('newMembersCount').textContent = currentNumber1;
+                currentNumber1 += Math.ceil((endNumber1 - startNumber1) * countIncrement / (endNumber1 - startNumber1));
+            }
+            if (currentNumber2 <= endNumber2) {
+                document.getElementById('uniqueInvestmentsCount').textContent = currentNumber2;
+                currentNumber2 += Math.ceil((endNumber2 - startNumber2) * countIncrement / (endNumber2 - startNumber2));
+            }
+
+            if (currentNumber1 <= endNumber1 || currentNumber2 <= endNumber2) {
+                setTimeout(countNumbers, countIncrement);
+            }
+        }
+
+        // Check if the section is in view and trigger actions
+        function checkInView() {
+            const section = document.querySelector('.aboutCompany');
+            const sectionTop = section.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+
+            if (sectionTop < windowHeight) {
+                // Section is in view, start typing and counting
+                typeText();
+                countNumbers();
+                window.removeEventListener('scroll', checkInView); // Remove event listener after triggering
+            }
+        }
+
+        // Listen for scroll events to check when the section comes into view
+        window.addEventListener('scroll', checkInView);
+        checkInView(); // Check initially in case the section is already in view
+    });
+
+
+    $(document).ready(function () {
+        $(".customer-logos").slick({
+            slidesToShow: 6,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 1500,
+            arrows: false,
+            dots: false,
+            pauseOnHover: false,
+            responsive: [
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 4
+                    }
+                },
+                {
+                    breakpoint: 520,
+                    settings: {
+                        slidesToShow: 3
+                    }
+                }
+            ]
+        });
+    });
+</script>
+</html>

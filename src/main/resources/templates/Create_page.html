@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-fvVGrO69KYlz0tjRGrOpRsdZIb6HemjSzExD9qQCeTtF8Zq4p21F5V32vlQ+8bXC7ZZIgAEbaHOcyEg6UeVs8A==" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+  
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <link rel="stylesheet" type="text/css" href="/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="/css/fonts.css" />
+    <link rel="stylesheet" type="text/css" href="/css/create_event.css"/>
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tingle.js/dist/tingle.min.css">
+    <title>Create Event Page</title>
+</head>
+<body>
+<header class="header">
+    <section class="section1" style="--src:url(/img/0502f0f63cc56790c6952133ae2b1481.png)">
+        <div class="content_box">
+
+            <div class="searchBox">
+                <input class="searchInput" type="text" name="" placeholder="Search">
+                <button class="searchButton" href="#">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+            <a class="subtitle1" th:href="@{'/main/'}"><h3>STELLAR<br/>INVESTMENT</h3></a> </p>
+
+            <a class="subtitle2" th:href="@{'/project/all/team/'}"><h3>Projects</h3></a>
+            <a class="subtitle21" th:href="@{'/main/'}"><h3>Home</h3></a>
+
+            <img class="image4" src="/img/ace06293b0d4076285adfa86c63156ab.png" alt=""/>
+            <div class="dropdown">
+                <img class="box" th:src="@{${user.photosImagePath}}" alt="alt text" onclick="toggleDropdown()">
+                <div id="myDropdown" class="dropdown-content">
+                    <a th:href="@{'/main/account_details'}">My Profile</a>
+                    <a th:href="@{'/project/my/'}">Project Applications</a>
+                    <a th:href="@{'/project/my/created/'}">My Projects</a>
+                    <a th:href="@{'/project/'}">Create Project</a>
+                    <a href="JavaScript:void(0)" onclick="singOutForm.submit()">Log Out
+                        <form th:action="@{'/logout'}" method="post" id="singOutForm"></form>
+                    </a>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+</header>
+
+<main class="create-event-page main">
+
+    <section class="section2">
+        <div class="content_box">
+            <div class="rect"></div>
+            <div class="text">From this account</div>
+            <img class="image11" th:src="@{${user.photosImagePath}}" alt="alt text" />
+            <h3 class="subtitle" th:text="${user.fullName}"></h3>
+        </div>
+        <div class="flex_col">
+            <div class="flex_row">
+                <input type="checkbox" id="checkbox1" class="custom-checkbox">
+                <label for="checkbox1" class="checkbox_option_label">I agree to the personal data processing</label>
+            </div>
+            <hr class="line1" size="1" />
+        </div>
+        <div class="flex_col1">
+            <div class="flex_row">
+                <input type="checkbox" id="checkbox2" class="custom-checkbox">
+                <label for="checkbox2" class="checkbox_option_label">I agree with the <span style="color: blue; cursor: pointer;" onclick="openService()">terms of service</span></label>
+            </div>
+            <hr class="line" size="1" />
+        </div>
+        <img class="image" src="/img/0cb590dadc1199cf7a5786ce22c7c50f.png" alt="alt text" />
+        <button class="box" onclick="handleButtonClick()">
+            <h3 class="subtitle14">Let’s create</h3>
+        </button>
+        <h1 class="hero_title1">Realize the idea and find like-<br />minded people</h1>
+
+        <div class="custom-dropdown">
+            <div class="custom-dropdown-content msg"></div>
+        </div>
+    </section>
+
+    <section class="section3">
+        <div class="content_box9">
+            <div class="rect2"></div>
+            <div class="text1">You have an active bank account</div>
+            <p class="text11">
+                You have formulated the main and financial objectives of the project and outlined its timeline
+            </p>
+            <img class="image2" src="/img/78c38cb1302ce869e2cd238f4b13f25b.png" alt="alt text" /><img class="image21" src="/img/78c38cb1302ce869e2cd238f4b13f25b.png" alt="alt text" />
+            <div class="text12">You realize a creative and/or socially useful idea</div>
+            <img class="image22" src="/img/78c38cb1302ce869e2cd238f4b13f25b.png" alt="alt text" />
+            <div class="text13">If you are at least 18 years old</div>
+            <img class="image3" src="/img/833416eb8056af4ac537a248c5ad976d.png" alt="alt text" />
+            <div class="content_box2">
+                <h3 class="subtitle21">startup</h3>
+            </div>
+            <div class="content_box6">
+                <h3 class="subtitle22">education</h3>
+            </div>
+            <div class="content_box1">
+                <h3 class="subtitle23">events</h3>
+            </div>
+            <div class="content_box11">
+                <h3 class="subtitle24">science</h3>
+            </div>
+            <div class="content_box12">
+                <h3 class="subtitle25">sport</h3>
+            </div>
+            <div class="content_box13">
+                <h3 class="subtitle26">movie</h3>
+            </div>
+            <img class="image23" src="/img/78c38cb1302ce869e2cd238f4b13f25b.png" alt="alt text" />
+            <div class="content_box14">
+                <h3 class="subtitle27">music</h3>
+            </div>
+            <div class="content_box3">
+                <h3 class="subtitle28">literature</h3>
+            </div>
+            <h2 class="medium_title3">You can create a project</h2>
+        </div>
+        <div class="section31">
+            <img class="image31" src="/img/fa6dcb8767d8a3552e08df565b5c4683.png" alt="alt text" />
+            <div class="content_box61">
+                <hr class="line2" size="1" />
+                <div class="text2">Read more in the rules of the service</div>
+            </div>
+            <img class="image24" src="/img/74a4fd3012ec56bc7b9ce7ced665e9e1.png" alt="alt text" /><img class="image25" src="/img/74a4fd3012ec56bc7b9ce7ced665e9e1.png" alt="alt text" /><img class="image26" src="/img/74a4fd3012ec56bc7b9ce7ced665e9e1.png" alt="alt text" /><img class="image27" src="/img/74a4fd3012ec56bc7b9ce7ced665e9e1.png" alt="alt text" />
+            <p class="text14">The project contradicts the current legislation of the Kazakhstan Republic</p>
+            <div class="text15">Your project is related to political or religious activities</div>
+            <div class="text16">You&#x27;re pursuing a personal agenda</div>
+            <div class="text17">You&#x27;re under 18 years old</div>
+            <div class="content_box15">
+                <h3 class="subtitle29">politics</h3>
+            </div>
+            <div class="content_box16">
+                <h3 class="subtitle210">debts</h3>
+            </div>
+            <div class="content_box17">
+                <h3 class="subtitle211">insult</h3>
+            </div>
+            <div class="content_box18">
+                <h3 class="subtitle212">add</h3>
+            </div>
+            <div class="content_box19">
+                <h3 class="subtitle213">religion</h3>
+            </div>
+            <h2 class="medium_title31">The project will be rejected</h2>
+        </div>
+        <h4 class="highlight">Join</h4>
+    </section>
+
+    <section class="section4">
+        <div class="card-list">
+            <a href="#" class="card-item">
+                <img src="/img/documentFilePage.png" alt="Card Image">
+                <span class="document">Documents</span>
+                <p class="techno">Before launching the project, sign an agreement on the terms and conditions of cooperation with Stellar Investment.</p>
+
+            </a>
+            <a href="#" class="card-item">
+                <img src="/img/programmersCode.png" alt="Card Image">
+                <span class="moderator" style="justify-content: center;">Moderator</span>
+                <p class="techno">You will receive a reply from the Administrator within three business days.</p>
+            </a>
+            <a href="#" class="card-item">
+                <img src="/img/animationComputer.png" alt="Card Image">
+                <span class="editor">Editor</span>
+                <p class="techno"> Create a draft in the editor: outline the purpose and timeline of the project, add a description,
+                    photos and tariffs.</p>
+            </a>
+            <a href="#" class="card-item">
+                <img src="/img/rocketLaunch.png" alt="Card Image">
+                <span class="lauch">Launch</span>
+                <p class="techno">Your project is up and running. We wish you success!</p>
+            </a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container2">
+            <div class="footerNav">
+                <div class="logoFooter">
+                    <img src="/img/logo.svg" alt="#">
+                    <a href="#">STELLAR INVESTMENT</a>
+                </div>
+                <ul class="eachNav">
+                    <li>
+                        <img src="/img/geo.svg" alt="#">
+                        <p style="width: 300px;">microdistrict Daraboz, home 123, Almaty, Kazakhstan</p>
+                    </li>
+                    <li>
+                        <img src="/img/mail.svg" alt="#">
+                        <p>contact@almightypush.com</p>
+                    </li>
+                    <li>
+                        <img src="/img/phone.svg" alt="#">
+                        <p>+7 775 203 01 90</p>
+                    </li>
+                </ul>
+            </div>
+            <p class="year">© 2024 Stellar Investment. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    
+
+</main>
+<script src="https://cdn.jsdelivr.net/npm/tingle.js/dist/tingle.min.js"></script>
+<script type="text/javascript">
+    const dropdown = document.querySelector('.dropdown');
+    const dropdownContent = document.querySelector('.dropdown-content');
+
+    dropdown.addEventListener('click', function (event) {
+        dropdownContent.classList.toggle('show');
+    });
+
+
+    function handleButtonClick() {
+    var checkbox1 = document.getElementById("checkbox1");
+    var checkbox2 = document.getElementById("checkbox2");
+    var dropdownContent = document.querySelector('.msg');
+
+    if (!checkbox1.checked || !checkbox2.checked) {
+        dropdownContent.innerText = 'Please check both checkboxes.';
+        dropdownContent.classList.add('msg-success', 'active', 'animate', 'slide-in-down');
+        setTimeout(function() {
+            dropdownContent.classList.remove('active', 'animate', 'slide-in-down');
+        }, 2000);
+    } else {
+        window.location.href = "create/new/";
+    }
+}
+
+    var modal = new tingle.modal({
+        footer: false,
+        closeMethods: ['overlay', 'button'], // Allow closing by clicking overlay (outside modal) or button
+        closeLabel: "Close",
+        cssClass: ['modal-container']
+    });
+
+    var termsText = '<span class="modal-title">Terms of Service</span>' +
+        '<p>By using our service, you agree to the following terms:</p>' +
+        '<ol>' +
+        '<li><strong>Responsibility:</strong> Use the service responsibly and comply with applicable laws.</li>' +
+        '<li><strong>Privacy:</strong> Your data may be collected and processed according to our privacy policy.</li>' +
+        '<li><strong>Intellectual Property:</strong> Respect intellectual property rights; do not use content without permission.</li>' +
+        '<li><strong>Disclaimer:</strong> Service provided "as is" without warranties of any kind.</li>' +
+        '<li><strong>Limitation of Liability:</strong> We are not liable for damages arising from use of the service.</li>' +
+        '<li><strong>Termination:</strong> We reserve the right to terminate or suspend access to the service.</li>' +
+        '</ol>' +
+        '<.>By using the service, you acknowledge and agree to these terms. Read our full Terms of Service for more details in <a href="www.domain.com">www.domain.com</a></p>';
+
+    modal.setContent(termsText); // Use termsText variable to set modal content
+
+    function openService() {
+        modal.open();
+    }
+
+    // Close modal when clicking outside of it (overlay)
+    modal.overlay.addEventListener('click', function() {
+        modal.close();
+    });
+
+</script>
+</body>
+
+</html>

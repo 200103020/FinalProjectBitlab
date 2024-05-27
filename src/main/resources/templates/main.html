@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <link rel="stylesheet" type="text/css"
+          href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/fonts.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/main.css"/>
+    <script type="text/javascript" src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/sticky-js@1.3.0/dist/sticky.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/headroom.js@0.12.0/dist/headroom.min.js"></script>
+
+
+    <title>Main Page</title>
+
+</head>
+
+<body class="flex-column">
+<header class="header">
+    <section class="section1" style="--src:url(/img/0502f0f63cc56790c6952133ae2b1481.png)">
+        <div class="content_box">
+
+            <div class="searchBox">
+                <input class="searchInput" type="text" name="" placeholder="Search">
+                <button class="searchButton" href="#">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+            <a class="subtitle1" href=""><h3>STELLAR<br/>INVESTMENT</h3></a>
+
+            <a class="subtitle2" th:href="@{'/project/all/team/'}" sec:authorize="hasAuthority('User')"><h3>Projects</h3></a>
+            <a class="subtitle21" href=""><h3>Home</h3></a>
+            <div class="rect1"></div>
+            <img class="image4" src="/img/ace06293b0d4076285adfa86c63156ab.png" alt=""/>
+
+
+            <div class="dropdown" sec:authorize="isAuthenticated()">
+                <th:block th:if="${user != null}">
+                    <img class="box2" th:src="@{${user.photosImagePath}}"
+                         alt="alt text" onclick="toggleDropdown()">
+                </th:block>
+                <div id="myDropdown" class="dropdown-content">
+                    <th:block th:if="${user != null}">
+                        <a th:href="@{'/main/account_details'}">My Profile</a>
+                        <a sec:authorize="hasAuthority('Admin')" th:href="@{'/admin/projects'}">Manage Projects</a>
+                        <a th:href="@{'/project/my/'}" sec:authorize="hasAuthority('User')">My Projects</a>
+                        <a th:href="@{'/project/'}" sec:authorize="hasAuthority('User')">Create Projects</a>
+                        <a href="JavaScript:void(0)" onclick="singOutForm.submit()">Log Out
+                            <form th:action="@{'/logout'}" method="post" id="singOutForm"></form>
+                        </a>
+                    </th:block>
+                </div>
+            </div>
+
+
+            <div class="box" sec:authorize="!isAuthenticated()">
+                <img class="wrapper1" src="/img/c57eadf6ae997997f680beb6a90ca50d.png" alt="alt text"/>
+                <a th:href="@{'/auth/login'}" class="subtitle22" id="loginButton"
+                   style="text-decoration: none;">Login</a>
+            </div>
+        </div>
+    </section>
+</header>
+<main class="main">
+    <section class="section2">
+        <div class="group">
+            <div class="group1">
+                <div class="group1">
+                    <div class="group1">
+                        <div class="group1">
+                            <div class="rect16"></div>
+                            <img class="image17" src="/img/snimok.png" alt="alt text"/>
+                        </div>
+                        <div class="rect17"></div>
+                    </div>
+                    <h3 class="subtitle15">₸ 509,821 Raised</h3>
+                </div>
+                <h2 class="medium_title2_box">
+                        <span class="medium_title2"
+                        ><span class="medium_title2_span0">Perplexity AI<br/></span><span class="medium_title2_span1"
+                        >is a powerful tool that leverages language models to provide accurate answers and information without
+                  the need for complex technical expertise. It is designed..</span></span>
+                </h2>
+            </div>
+            <div class="group2">
+                <img class="image16" src="/img/917681335b0fd9727686007b50f6b668.png" alt="alt text"/>
+                <div class="group3">
+                    <div class="text2">996 Investors</div>
+                    <div class="text21">101% of target</div>
+                </div>
+            </div>
+        </div>
+        <div class="group4">
+            <div class="rect18"></div>
+            <div class="group5">
+                <h3 class="subtitle16">12 days remaining</h3>
+                <div class="group6">
+                    <div class="rect19"></div>
+                    <h3 class="subtitle17">Tariffs</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section3">
+        <div class="container">
+            <div class="item-container">
+                <div class="img-container">
+                    <img src="/img/image-f66a46d2-80e9-4532-add9-d0ff98f05e5c.webp" alt="Event image">
+                </div>
+
+                <div class="body-container">
+                    <div class="overlay"></div>
+
+                    <div class="event-info">
+                        <p class="title">Open Bionics</p>
+                        <div class="separator">
+                            <div class="textP first">80%</div>
+                            <div class="textP second">20%</div>
+                        </div>
+                        <p class="info">Almaty</p>
+                        <p class="price">₸210,905</p>
+
+                        <div class="additional-info">
+                            <p class="info">
+                                <i class="fas fa-map-marker-alt"></i>
+                                microdistrict MC
+                            </p>
+                            <p class="info">
+                                <i class="far fa-calendar-alt"></i>
+                                Till Sat, Sep 19, 10:00 AM
+                            </p>
+
+                            <p class="info description">
+                                Welcome! Makes functional and empowering prosthetic limbs for people with upper limb
+                                loss and limb difference <span>more...</span>
+                            </p>
+                        </div>
+                    </div>
+                    <button class="action">In detail</button>
+                </div>
+            </div>
+
+            <div class="item-container">
+                <div class="img-container">
+                    <img src="/img/image-f66a46d2-80e9-4532-add9-d0ff98f05e5c.webp" alt="Event image">
+                </div>
+
+                <div class="body-container">
+                    <div class="overlay"></div>
+
+                    <div class="event-info">
+                        <p class="title">Open Bionics</p>
+                        <div class="separator">
+                            <div class="textP first">80%</div>
+                            <div class="textP second">20%</div>
+                        </div>
+                        <p class="info">Almaty</p>
+                        <p class="price">₸210,905</p>
+
+                        <div class="additional-info">
+                            <p class="info">
+                                <i class="fas fa-map-marker-alt"></i>
+                                microdistrict MC
+                            </p>
+                            <p class="info">
+                                <i class="far fa-calendar-alt"></i>
+                                Till Sat, Sep 19, 10:00 AM
+                            </p>
+
+                            <p class="info description">
+                                Welcome! Makes functional and empowering prosthetic limbs for people with upper limb
+                                loss and limb difference <span>more...</span>
+                            </p>
+                        </div>
+                    </div>
+                    <button class="action">In detail</button>
+                </div>
+            </div>
+
+            <div class="item-container">
+                <div class="img-container">
+                    <img src="/img/image-f66a46d2-80e9-4532-add9-d0ff98f05e5c.webp" alt="Event image">
+                </div>
+
+                <div class="body-container">
+                    <div class="overlay"></div>
+
+                    <div class="event-info">
+                        <p class="title">Open Bionics</p>
+                        <div class="separator">
+                            <div class="textP first">80%</div>
+                            <div class="textP second">20%</div>
+                        </div>
+                        <p class="info">Almaty</p>
+                        <p class="price">₸210,905</p>
+
+                        <div class="additional-info">
+                            <p class="info">
+                                <i class="fas fa-map-marker-alt"></i>
+                                microdistrict MC
+                            </p>
+                            <p class="info">
+                                <i class="far fa-calendar-alt"></i>
+                                Till Sat, Sep 19, 10:00 AM
+                            </p>
+
+                            <p class="info description">
+                                Welcome! Makes functional and empowering prosthetic limbs for people with upper limb
+                                loss and limb difference <span>more...</span>
+                            </p>
+                        </div>
+                    </div>
+                    <button class="action">In detail</button>
+                </div>
+            </div>
+    </section>
+
+    <section class="section4">
+        <div class="group7">
+            <div class="group8">
+                <div class="group8">
+                    <div class="group8">
+                        <img class="cover1" src="/img/f382a0424ec2f491d1112855b123c78c.png" alt="alt text"/><img
+                            class="image" src="/img/3986b59ae26dc40534b518ecfc5bae77.png" alt="alt text"/>
+                    </div>
+                    <img class="image1" src="/img/3986b59ae26dc40534b518ecfc5bae77.png" alt="alt text"/>
+                </div>
+                <div class="group9">
+                    <div class="group10">
+                        <div class="group10">
+                            <div class="group10">
+                                <h1 class="hero_title">Since 2013, we’ve kept </h1>
+                                <img class="image2" src="/img/3986b59ae26dc40534b518ecfc5bae77.png" alt="alt text"/>
+                            </div>
+                            <img class="image3" src="/img/3986b59ae26dc40534b518ecfc5bae77.png" alt="alt text"/>
+                        </div>
+                        <h1 class="hero_title2">company</h1>
+                    </div>
+                    <div class="group11">
+                        <div class="rect3"></div>
+                        <h1 class="hero_title21" id="typingEffect"></h1>
+                    </div>
+                </div>
+            </div>
+            <h2 class="medium_title1">
+                In that time we’ve helped raise over ₸1.4 billion for over 1,300 mission-driven businesses and built up
+                a
+                community of over 1.7 million members. More recently than that we had…
+            </h2>
+        </div>
+        <div class="group12">
+            <div class="group13">
+                <div class="group13">
+                    <div class="group13">
+                        <div class="group13">
+                            <div class="group13">
+                                <img class="decorator" src="/img/6ff93e4ae909835f71c33f9d2eb91d02.png" alt="alt text"/>
+                                <div class="flex_col">
+                                    <h5 class="highlight">TOTAL INVESTED LAST MONTH</h5>
+                                </div>
+                            </div>
+                            <h1 class="hero_title3">190k</h1>
+                        </div>
+                        <div class="flex_col1">
+                            <h5 class="highlight">UNIQUE INVESTMENTS LAST MONTH</h5>
+                            <h1 class="hero_title33">3990</h1>
+                        </div>
+                    </div>
+                    <div class="flex_col2">
+                        <h5 class="highlight">TOTAL INVESTED LAST MONTH</h5>
+                        <h1 class="hero_title32">₸2.1m</h1>
+                    </div>
+                </div>
+                <div class="flex_col3">
+                    <h5 class="highlight">NEW MEMBERS LAST MONTH</h5>
+                    <h1 class="hero_title31 counting-effect"></h1>
+                </div>
+            </div>
+            <img class="image11" src="/img/a202e842d2c8bbd95651b4648662c3b0.png" alt="alt text"/>
+        </div>
+    </section>
+
+    <section class="section5">
+        <div class="section51">
+            <div class="wrapper3" style="--src:url(/img/e642cd3c38ae4119cfe1d9f0ba59d7d5.png)"></div>
+        </div>
+        <div class="wrapper11" style="--src:url(/img/dc86201539da0a1e71e2f8113692a59b.png)"></div>
+        <div class="wrapper31" style="--src:url(/img/e642cd3c38ae4119cfe1d9f0ba59d7d5.png)"></div>
+        <h1 class="hero_title4">Our Happy Journey Grew With Them!</h1>
+        <div class="wrapper2" style="--src:url(/img/6b0ded993c12b1981e138fd6bb848302.png)"></div>
+        <img class="image21" src="/img/f8779f6671203d041f6bf8e21968cc49.png" alt="alt text"/><img class="image31"
+                                                                                                  src="/img/037523cb74caf533b4c8751b661c3549.png"
+                                                                                                  alt="alt text"/>
+        <div class="wrapper21" style="--src:url(/img/6b0ded993c12b1981e138fd6bb848302.png)"></div>
+        <img class="image22" src="/img/f8779f6671203d041f6bf8e21968cc49.png" alt="alt text"/><img class="image32"
+                                                                                                  src="/img/037523cb74caf533b4c8751b661c3549.png"
+                                                                                                  alt="alt text"/>
+    </section>
+
+    <section class="section6">
+        <div class="group14">
+            <div class="group15">
+                <div class="group15">
+                    <div class="group15">
+                        <div class="group15">
+                            <div class="group15">
+                                <div class="group15">
+                                    <div class="group15">
+                                        <div class="rect11"></div>
+                                        <img class="image10" src="/img/39db5c26c32238feffa5aa1cbe2c8743.png"
+                                             alt="alt text"/>
+                                    </div>
+                                    <img class="image8" src="/img/49ae40a30ba80064c79743934408a229.png" alt="alt text"/>
+                                </div>
+                                <h3 class="subtitle8">
+                                    Sea chub mademoiselle whale-fish zebra lionfish mud cat pelican eel. Minnow snoek
+                                    icefish
+                                    velvet-belly shark, California<br/>halibut round stingray northern sea robin.
+                                    Southern grayling
+                                    trout-perchSuckerfish sea toad candider rocket<br/>danio tilefish stingray deepwater
+                                    stingray
+                                    Sacramento splittail, Canthigaster rostrata.
+                                </h3>
+                            </div>
+                            <div class="text11">Founder</div>
+                        </div>
+                        <h3 class="subtitle9">Burito Arborito</h3>
+                    </div>
+                    <img class="image9" src="/img/337491246b08859ea48c36055256140d.png" alt="alt text"/>
+                </div>
+                <img class="image91" src="/img/a16f2c2568423a07351359321bd48cc0.png" alt="alt text"/>
+            </div>
+            <h1 class="hero_title5">What People Say</h1>
+        </div>
+    </section>
+
+    <section class="section7">
+        <div class="group16">
+            <div class="rect10"></div>
+            <img class="image7" src="/img/3b8485fc196fe03254cec3af1f7a396e.png" alt="alt text"/>
+        </div>
+        <h3 class="subtitle7">How do I cancel my recurring donation?</h3>
+        <div class="group17">
+            <div class="rect10"></div>
+            <img class="image7" src="/img/3b8485fc196fe03254cec3af1f7a396e.png" alt="alt text"/>
+        </div>
+        <h3 class="subtitle6">Join your hand with us for a better life</h3>
+        <div class="group18">
+            <div class="rect10"></div>
+            <img class="image71" src="/img/3b8485fc196fe03254cec3af1f7a396e.png" alt="alt text"/>
+        </div>
+        <h3 class="subtitle71">Can I donate anonymously?</h3>
+        <div class="rect9"></div>
+        <div class="group19">
+            <div class="rect10"></div>
+            <img class="image7" src="/img/3b8485fc196fe03254cec3af1f7a396e.png" alt="alt text"/>
+        </div>
+        <h3 class="subtitle61">Let&#x27;s do the right thing now</h3>
+        <h3 class="subtitle5">Make a difference in the life of a child</h3>
+        <div class="group20">
+            <div class="rect7"></div>
+            <div class="rect8"></div>
+        </div>
+        <div class="wrapper4" style="--src:url(/img/5d4b46e0bcbf5ad034d9f1c993934f2b.png)"></div>
+        <p class="paragraph">
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+            dolore magna aliquyam erat.
+        </p>
+    </section>
+
+    <section class="section8">
+        <img class="image15" src="/img/600fa00ab8b89e7a0401e1a4b3a4514c.png" alt="alt text"/>
+        <h3 class="subtitle151">You need a help?</h3>
+        <div class="group21">
+            <h2 class="medium_title21">If you have additional questions, you can use the chatbot</h2>
+            <img class="image61" src="/img/51293b2d220e0c15319d1874785ca4a5.png" alt="alt text"/>
+        </div>
+    </section>
+
+    <section class="section9">
+        <h3 class="subtitle">© 2024 Stellar Investment. All Rights Reserved.</h3>
+        <div class="group22">
+            <div class="group23">
+                <div class="group23">
+                    <div class="group23">
+                        <div class="group23">
+                            <div class="group23">
+                                <div class="group23">
+                                    <img class="decorator1" src="/img/2f3ece1de78afc35b4c0ad51e4395183.png"
+                                         alt="alt text"/>
+                                    <h3 class="subtitle10">© 2024 Stellar Investment. All Rights Reserved.</h3>
+                                </div>
+                                <div class="group24">
+                                    <div class="group25">
+                                        <div class="group25">
+                                            <div class="group25">
+                                                <div class="group25">
+                                                    <div class="group25">
+                                                        <div class="group25">
+                                                            <div class="group25">
+                                                                <div class="group25">
+                                                                    <div class="group25">
+                                                                        <div class="group25">
+                                                                            <div class="group25">
+                                                                                <div class="group25">
+                                                                                    <div class="rect12"></div>
+                                                                                    <h3 class="subtitle13">We
+                                                                                        accept</h3>
+                                                                                </div>
+                                                                                <img class="image13"
+                                                                                     src="/img/121d5415873890d25a18dd9a49f38891.png"
+                                                                                     alt="alt text"/>
+                                                                            </div>
+                                                                            <img class="image14"
+                                                                                 src="/img/a8dcc8aea20f758a7d9912e1526f1dac.png"
+                                                                                 alt="alt text"/>
+                                                                        </div>
+                                                                        <div class=""></div>
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="group28">
+                                                                    <div class="rect15"></div>
+                                                                    <img class="image111"
+                                                                         src="/img/7a39f00d34d9eb253b78883930095a82.png"
+                                                                         alt="alt text"/>
+                                                                </div>
+                                                            </div>
+                                                            <div class="rect151"></div>
+                                                        </div>
+                                                        <img class="image72"
+                                                             src="/img/43ddc85fd5d45fd2a0953686d30322df.png"
+                                                             alt="alt text"/>
+                                                    </div>
+                                                    <div class="group29">
+                                                        <div class="rect15"></div>
+                                                        <img class="image12"
+                                                             src="/img/5de47b8cb81c466e2e1b2b3e9e72b2f2.png"
+                                                             alt="alt text"/>
+                                                    </div>
+                                                </div>
+                                                <p class="paragraph1">MON<br/>Careers<br/>News<br/>Contact us</p>
+                                            </div>
+                                            <p class="paragraph11">
+                                                Help Center<br/>How to  give<br/>Shipping &amp; Delivery <br/>Product
+                                                Policy<br/>How to
+                                                Return
+                                            </p>
+                                        </div>
+                                        <div class="group30">
+                                            <h3 class="subtitle12">Investing</h3>
+                                            <div class="group31">
+                                                <div class="group32">
+                                                    <h3 class="subtitle131">Help &amp; Guide</h3>
+                                                    <div class="group33">
+
+                                                        <h3 class="subtitle132">Social Media</h3>
+                                                    </div>
+                                                </div>
+                                                <h3 class="subtitle133">About</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="paragraph12">
+                                        Investment opportunities<br/>Fees<br/>Investor returns<br/>Tax relief<br/>Funded
+                                        companies
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="group34">
+                                <h3 class="subtitle14">+7 777 241 12 84</h3>
+                                <img class="wrapper6" src="/img/399bf71dd023f1dc67ce0c39cc4d37d9.png" alt="alt text"/>
+                            </div>
+                        </div>
+                        <div class="group35">
+                            <div class="group36">
+                                <h3 class="subtitle141">mon_vsegda_ogon@almightypush.com</h3>
+                                <img class="wrapper7" src="/img/52d6b93d16805d144cf3fe1c284fe0f3.png" alt="alt text"/>
+                            </div>
+                            <img class="wrapper8" src="/img/cd1d9907462f74cc57844c79ffd5b65a.png" alt="alt text"/>
+                        </div>
+                    </div>
+                    <h3 class="subtitle142">microdistrict Daraboz, 7</h3>
+                </div>
+                <img class="image41" src="/img/ace06293b0d4076285adfa86c63156ab.png" alt="alt text"/>
+            </div>
+            <h3 class="subtitle18">STELLAR<br/>INVESTMENT</h3>
+        </div>
+    </section>
+
+</main>
+<script type="text/javascript">
+    AOS.init();
+    new Sticky('.sticky-effect');
+
+    document.addEventListener("DOMContentLoaded", () => {
+        console.log("DOMContentLoaded event fired");
+        const el = document.querySelector(".hero_title31");
+        el.style.setProperty("--num", 1);
+        el.classList.add("counting-effect");
+    });
+
+
+    const dropdown = document.querySelector('.dropdown');
+    const dropdownContent = document.querySelector('.dropdown-content');
+
+    dropdown.addEventListener('click', function (event) {
+        dropdownContent.classList.toggle('show');
+    });
+</script>
+<script src="/js/type.js" type="text/javascript"></script>
+</body>
+
+</html>

@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-fvVGrO69KYlz0tjRGrOpRsdZIb6HemjSzExD9qQCeTtF8Zq4p21F5V32vlQ+8bXC7ZZIgAEbaHOcyEg6UeVs8A==" crossorigin="anonymous" />-->
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <link rel="stylesheet" type="text/css" href="/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="/css/fonts.css" />
+    <link rel="stylesheet" type="text/css" href="/css/Create_event_start.css"/>
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+    <title>Create Event Start Page</title>
+</head>
+
+
+<body>
+<header class="header">
+    <section class="section1" style="--src:url(/img/0502f0f63cc56790c6952133ae2b1481.png)">
+        <div class="content_box">
+
+            <div class="searchBox">
+                <input class="searchInput" type="text" name="" placeholder="Search">
+                <button class="searchButton" href="#">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+            <a class="subtitle1" th:href="@{'/main/'}"><h3>STELLAR<br/>INVESTMENT</h3></a>
+
+            <a class="subtitle2" th:href="@{'/project/all/team/'}"><h3>Projects</h3></a>
+            <a class="subtitle21" th:href="@{'/main/'}"><h3>Home</h3></a>
+
+            <img class="image4" src="/img/ace06293b0d4076285adfa86c63156ab.png" alt=""/>
+            <div class="dropdown">
+                <img class="box" th:src="@{${user.photosImagePath}}" alt="alt text">
+                <div id="myDropdown" class="dropdown-content">
+                    <a th:href="@{'/main/account_details'}">My Profile</a>
+                    <a th:href="@{'/project/my/'}">Project Applications</a>
+                    <a th:href="@{'/project/my/created/'}">My Projects</a>
+                    <a th:href="@{'/project/'}">Create Project</a>
+                    <a href="JavaScript:void(0)" onclick="singOutForm.submit()">Log Out
+                        <form th:action="@{'/logout'}" method="post" id="singOutForm"></form>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</header>
+
+<main class="create-page-start main">
+
+    <form id="myForm" th:action="@{/project/create_new}" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="userEmail" th:value="${user.email}">
+        <div class="section21">
+            <div class="tabs">
+                <div id="basicDataTab" class="tab content_box2" onclick="showTab('basicData')">
+                    <h3 class="subtitle1">Basic data</h3>
+                </div>
+                <div id="detailsTab" class="tab content_box3" onclick="showTab('details')">
+                    <h3 class="subtitle11">Details</h3>
+                </div>
+                <div id="tariffsTab" class="tab content_box31" onclick="showTab('tariffs')">
+                    <h3 class="subtitle1">Tariffs</h3>
+                </div>
+                <div id="singleTeamTab" class="tab content_box32" onclick="showTab('singleTeam')">
+                    <h3 class="subtitle12">Single/Team</h3>
+                </div>
+
+
+            </div>
+
+            <div id="basicDataContent" class="tab-content">
+                <table class="table">
+                    <tr>
+                        <td colspan="2">
+<!--                            <div class="wrapper" style="&#45;&#45;src:url(/img/d18269311afd6b2d8e99fa1b4e6eddd8.png)"></div>-->
+                            <img class="image" src="/img/ff6cc32e20f34b587e17aeb18b5c6944.png" alt="alt text"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <hr class="line" size="1"/>
+                            <hr class="line1" size="1"/>
+                            <hr class="line2" size="1"/>
+                            <hr class="line3" size="1"/>
+                            <hr class="line4" size="1"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="rect4"></div>
+                            <div class="rect5"></div>
+                            <!-- <div class="text" id="timeLimitsText">Time limits don’t selected</div> -->
+
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="wrapper1" style="--src:url(/img/29ba3e501615cc5c6da44567089eec18.png)"
+                                 onclick="showCalendar()"></div>
+                            <div class="text" id="selected-date-text">Time limits don't selected</div>
+
+                            <div id="calendar-container">
+                                <!-- Include your calendar HTML code or use a third-party library -->
+                                <!-- Example: -->
+                                <input type="date" name="finishTime" id="calendar" onchange="updateSelectedDate()">
+                            </div>
+
+
+                            <h3 class="subtitle2">
+                                <input type="number" id="numberInput" name="amountNeeded" placeholder="0" min="0"
+                                       step="10000"
+                                       oninput="validateNumberInput()">
+                            </h3>
+
+
+                        </td>
+                        <td>
+                            <div class="text2">
+                                <input type="text" id="briefInfo" name="shortDescription" placeholder="Brief info">
+                            </div>
+                            <img class="image11" src="/img/704fb994a95115eac452c12fd365a797.png" alt="alt text"/>
+                            <div class="text12" onclick="openModal('imageUploadModal')">UPLOAD AN IMAGE</div>
+                        </td>
+
+                        <!-- Modal for UPLOAD AN IMAGE -->
+                        <div id="imageUploadModal" class="modal">
+                            <img id="thumbnail" alt="Main image preview" class="img-fluid"
+                                 src="/projectImg/image-thumbnail.png" style="width: 200px"/>
+                            <input type="file" id="imageUploadInput" name="fileImage" accept="image/png, image/jpeg">
+                            <button type="button" onclick="closeModal('imageUploadModal')">Submit</button>
+                        </div>
+
+                        <div class="overlay" onclick="closeAllModals()"></div>
+
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="text3">
+                                <input type="text" name="title" id="titleInput"
+                                       placeholder="Title can consist up to 45 characters">
+
+                            </div>
+                            <hr class="line" size="1"/>
+                            <hr class="line1" size="1"/>
+                            <hr class="line2" size="1"/>
+                            <hr class="line3" size="1"/>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3 class="subtitle21">Time limits</h3>
+                            <h3 class="subtitle22">Financial goal, ₸</h3>
+                            <h3 class="subtitle23">Brief info</h3>
+
+                        </td>
+                        <td>
+                            <div class="text4">Image size 640x390</div>
+                            <h3 class="subtitle25">Main image</h3>
+                            <h3 class="subtitle26">Title</h3>
+                            <div class="rect41"></div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="detailsContent" class="tab-content">
+                <table class="table">
+                    <tr>
+                        <td colspan="2">
+<!--                            <div class="wrapper" style="&#45;&#45;src:url(/img/d18269311afd6b2d8e99fa1b4e6eddd8.png)"></div>-->
+                            <img class="image" src="/img/ff6cc32e20f34b587e17aeb18b5c6944.png" alt="alt text"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <hr class="line" size="1"/>
+                            <hr class="line1" size="1"/>
+                            <hr class="line2" size="1"/>
+                            <hr class="line3" size="1"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="rect4"></div>
+                            <div class="rect5"></div>
+
+
+                            <div id="datePicker">
+                                <label for="startTime">Start Time:</label>
+                                <input type="datetime-local" id="startTime" onchange="updateTimeLimitsText()">
+
+                                <label for="endTime">End Time:</label>
+                                <input type="datetime-local" id="endTime" onchange="updateTimeLimitsText()">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+
+                        <td>
+                            <div class="text2_">
+                                <input type="text" name="longDescription" id="fullDescript"
+                                       placeholder="You should start with the introduction of campaign’s team and history.">
+                            </div>
+
+
+                            <img class="image11" src="/img/704fb994a95115eac452c12fd365a797.png" alt="alt text"/>
+                            <img class="image12" src="/img/704fb994a95115eac452c12fd365a797.png" alt="alt text"/>
+                            <!-- <div class="text11" onclick="openModal('UrlModal')">PHOTO URL</div> -->
+                            <div class="text12" onclick="openModal('UploadModal')">Extra IMAGE #1</div>
+                            <div class="text13" onclick="openModal('VideoModal')">Extra IMAGE #2</div>
+                        </td>
+                        <!-- <div id="UrlModal" class="modal">
+                            <label for="UrlModal">Enter Photo URL:</label>
+                            <input type="text" id="UrlModal">
+                            <button onclick="closeModal('UrlModal')">Submit</button>
+                        </div> -->
+
+
+                        <div id="UploadModal" class="modal">
+                            <img id="thumbnail2" alt="First extra image preview" class="img-fluid"
+                                 src="/projectImg/image-thumbnail.png" style="width: 200px"/>
+                            <input type="file" id="firstImageUploadInput" name="extraImage" accept="image/png, image/jpeg">
+                            <button type="button" onclick="closeModal('UploadModal')">Submit</button>
+                        </div>
+
+                        <div id="VideoModal" class="modal">
+                            <img id="thumbnail3" alt="Second extra image preview" class="img-fluid"
+                                 src="/projectImg/image-thumbnail.png" style="width: 200px"/>
+                            <input type="file" id="secondImageUploadInput" name="extraImage" accept="image/png, image/jpeg">
+                            <button type="button" onclick="closeModal('VideoModal')">Submit</button>
+                        </div>
+
+
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+
+                            <hr class="line" size="1"/>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+
+                            <h3 class="subtitle23">Full description</h3>
+
+                        </td>
+                        <td>
+                            <div class="text4">740 x 417px.<br/>This one of the most convincing and effective tools to
+                                attract audience.
+                            </div>
+
+                            <h3 class="subtitle26">Extra Images(Optional)</h3>
+                            <div class="rect41"></div>
+                        </td>
+                    </tr>
+                    <div class="overlay" onclick="closeAllModals()"></div>
+                </table>
+            </div>
+        </div>
+
+        <div id="tariffsContent" class="tab-content">
+            <div class="creat root">
+                <div class="content_box3">
+
+
+                    <input type="number" class="customAmountInput" id="tariffAmount" min="0" step="1000"
+                           placeholder="Enter amount">
+
+
+                    <div class="content_box2">
+                        <div class="rect2"></div>
+                        <hr class="line" size="1"/>
+                        <h3 class="subtitle1">Short description</h3>
+                        <h3 class="subtitle11">Tariff name</h3>
+                        <div class="rect3"></div>
+                        <div class="text3">
+                            <input type="text" id="tariffTitleInput" placeholder="Tariff name">
+
+                        </div>
+
+                        <div class="textu">
+                            <input type="text" id="KAKInput" placeholder="Short Info about your Project">
+                        </div>
+
+                    </div>
+                    <div class="box" onclick="selectBox(this)"><h5 class="highlight">₸1000</h5></div>
+                    <div class="box1" onclick="selectBox(this)"><h5 class="highlight1">₸5000</h5></div>
+                    <div class="box11" onclick="selectBox(this)"><h5 class="highlight1">₸9000</h5></div>
+                    <div class="box2" onclick="selectBox(this)"><h5 class="highlight11">₸20000</h5></div>
+                    <div class="box3" onclick="selectBox(this)"><h5 class="highlight11">₸100000</h5></div>
+                </div>
+
+                <!-- Button to add a new table -->
+                <div id="tableWrapper_for_tariff" style="margin-top: 195px">
+                    <input type="button" id="addTariffButton" value="Add Tariff" onclick="addTariffAndPerson()"/><br>
+                    <!-- <div id="newTablePlaceholder"></div> -->
+                    <div class="table_for_tariff_section">
+                        <table id="tariffTable">
+                            <thead>
+                            <tr>
+                                <td>Amount</td>
+                                <td>Main present</td>
+                                <td>Short description</td>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody id="tariffTableBody">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+<!--            <button type="submit" id="addTariffButton2"-->
+<!--                    style="background: bisque; padding: 10px; border: 1px solid; cursor: pointer">Submit-->
+<!--            </button>-->
+        </div>
+
+
+        <div id="singleTeamContent" class="tab-content">
+
+            <div class="options-container">
+                <label class="option-label">
+                    <input type="radio" id="singleRadio" name="options" value="single"
+                           onclick="toggleContent('single')" checked> Single
+                </label>
+                <label class="option-label">
+                    <input type="radio" id="teamRadio" name="options" value="team" onclick="toggleContent('team')"> Team
+                </label>
+
+
+            </div>
+
+
+            <div class="crea" id="singleContent">
+
+
+                <div class="content_box2">
+                    <div class="rect2"></div>
+
+
+                    <h3 class="subtitle11">About Yourself</h3>
+                    <div class="rect3"></div>
+                    <div class="text3">
+                        <input type="text" id="titleInputYourself" name="aboutCreator"
+                               placeholder="About yourself or more about project">
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+            <div class="aerc" id="teamContent">
+
+                <div class="section21">
+
+
+                    <!-- <div class="content_box2">
+                        <h3 class="subtitle22">+ Add member</h3>
+                    </div> -->
+                    <div class="content_box5">
+
+                        <div class="rect9"></div>
+
+
+                        <h3 class="subtitleQuantity">
+                            <input type="number" id="QuantityInput" placeholder="0" min="0"
+                                   oninput="validateNumberInput()">
+                        </h3>
+
+
+                        <h3 class="subtitle32">Quantity</h3>
+                        <hr class="line" size="1"/>
+
+
+                        <div class="text1" id="selectedExperienceText" onclick="toggleExpOptions()">- Not selected -
+                        </div>
+                        <select class="select-experience" id="experienceSelect" onchange="updateSelectedExperience()">
+                            <option value="" selected disabled>Select a experience</option>
+                            <option value="no needed">no needed</option>
+                            <option value="half year">half year</option>
+                            <option value="1 year">1 year</option>
+                            <option value="2 year">2 year</option>
+                            <option value="3-5 years">3-5 years</option>
+                            <option value="5+ years">5+ years</option>
+                        </select>
+
+                        <div class="text2">
+                            <input type="text" id="PosInput" placeholder="Your Position">
+
+                        </div>
+                        <h3 class="subtitle33">Additional info</h3>
+                        <div class="text4">
+                            <input type="text" id="InfoInput" placeholder="Info">
+
+                        </div>
+                        <hr class="line1" size="1"/>
+                        <hr class="line2" size="1"/>
+                        <h3 class="subtitle34">Experience</h3>
+                        <h3 class="subtitle35">Position</h3>
+                        <div class="rect10"></div>
+
+
+                    </div>
+
+                </div>
+
+                <div id="tableWrapper_for_person" style="margin-top: -200px;">
+                    <input type="button" id="addPersonButton" value="Add Person" onclick="addPerson()"/><br>
+                    <!-- <div id="newTablePlaceholder"></div> -->
+                    <div class="table_for_person_section">
+                        <table id="teamTable">
+                            <thead>
+                            <tr>
+                                <td>Position</td>
+                                <td>Experience</td>
+                                <td>Quantity</td>
+                                <td>Info</td>
+                                <td>Action</td>
+                            </tr>
+                            </thead>
+                            <tbody id="teamBodyTable">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+        <div id="buttonWrapper">
+            <button type="button" id="previousStep" class="tab content_box1"  onclick="showPreviousStep()" style="margin-top: 382px; margin-left: 172px;">
+                <h3 class="subtitle13">Previous Step</h3>
+            </button>
+
+            <button type="button" id="continueTab" class="tab content_box" style="display: flex; margin-top: 382px; margin-left: 172px;" onclick="continueToNextTab()">
+                <h3 class="subtitle">Next</h3>
+            </button>
+
+            <button type="submit" id="submitTabButton" class="tab content_box_submit" style="display: none; margin-top: 382px; margin-left: 172px;">
+                <h3 class="subtitle">Submit</h3>
+            </button>
+        </div>
+    </form>
+</main>
+
+<footer class="footer">
+    <div class="container2">
+        <div class="footerNav">
+            <div class="logoFooter">
+                <img src="/img/logo.svg" alt="#">
+                <a href="#">STELLAR INVESTMENT</a>
+            </div>
+            <ul class="eachNav">
+                <li>
+                    <img src="/img/geo.svg" alt="#">
+                    <p style="width: 300px;">microdistrict Daraboz, home 123, Almaty, Kazakhstan</p>
+                </li>
+                <li>
+                    <img src="/img/mail.svg" alt="#">
+                    <p>contact@almightypush.com</p>
+                </li>
+                <li>
+                    <img src="/img/phone.svg" alt="#">
+                    <p>+7 775 203 01 90</p>
+                </li>
+            </ul>
+        </div>
+        <p class="year">© 2024 Stellar Investment. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<script src="/js/custom.js?v=4"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="/js/addTariffAndPerson.js?v=16"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $(document).on("change", "input[type='file']", function () {
+            var fileSize = this.files[0].size;
+            var inputId = $(this).attr("id");
+
+            if (fileSize > 502400) {
+                this.setCustomValidity("You must choose an image less than 502400 bytes!");
+                this.reportValidity();
+            } else {
+                this.setCustomValidity("");
+                showImageThumbnail(this, inputId);
+            }
+        });
+    });
+
+    function showImageThumbnail(fileInput, inputId) {
+        var file = fileInput.files[0];
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $("#" + inputId).prev("img").attr("src", e.target.result);
+        };
+        reader.readAsDataURL(file);
+    }
+
+    function validateForm() {
+        var isValid = true;
+        var inputs = document.querySelectorAll('#numberInput, #briefInfo, #titleInput, #fullDescript, #calendar');
+        var fileInput = document.getElementById('imageUploadInput');
+
+        var emptyInputs = [];
+
+        for (var i = 0; i < inputs.length; i++) {
+            if (inputs[i].value.trim() === "") {
+                emptyInputs.push(inputs[i]);
+            }
+        }
+
+        if (emptyInputs.length === inputs.length) {
+            alert("Please fill in all fields before submitting the form.");
+            return false;
+        } else if (emptyInputs.length > 0) {
+            var missingFields = emptyInputs.map(function (input) {
+                var inputId = input.id;
+                var inputName = "";
+                switch (inputId) {
+                    case 'numberInput':
+                        inputName = "Financial goal";
+                        break;
+                    case 'briefInfo':
+                        inputName = "Brief Info";
+                        break;
+                    case 'titleInput':
+                        inputName = "Title";
+                        break;
+                    case 'fullDescript':
+                        inputName = "Full Description";
+                        break;
+                    case 'calendar':
+                        inputName = "Time limits";
+                        break;
+                    default:
+                        inputName = "all";
+                }
+                return inputName;
+            });
+            alert("Please fill in the following fields before submitting the form: " + missingFields.join(", "));
+            return false;
+        }
+
+        if (!isValid) {
+            return isValid;
+        }
+
+        if (tariffsList.length === 0) {
+            alert("Please add at least one item to the tariff table before submitting the form.");
+            isValid = false;
+        }
+
+        if (fileInput.files.length === 0) {
+            alert("Please select an image before submitting the form.");
+            isValid = false;
+        }
+
+        if (document.getElementById('teamRadio').checked) {
+            if (personsList.length === 0) {
+                alert("Please add at least one item to the team before submitting the form.");
+                isValid = false;
+            }
+        }
+
+        if (document.getElementById('singleRadio').checked && document.getElementById('titleInputYourself').value.trim() === "") {
+            alert("Please fill in the 'About yourself' before submitting the form.");
+            isValid = false;
+        }
+
+        var radioButtons = document.querySelectorAll('input[type="radio"][name="options"]');
+        var isRadioButtonSelected = Array.from(radioButtons).some(function (radioButton) {
+            return radioButton.checked;
+        });
+
+        if (!isRadioButtonSelected) {
+            alert("Please select an one option (Single/Team) before submitting the form.");
+            return false;
+        }
+
+
+        return isValid;
+    }
+
+
+    const dropdown = document.querySelector('.dropdown');
+    const dropdownContent = document.querySelector('.dropdown-content');
+
+    dropdown.addEventListener('click', function (event) {
+        dropdownContent.classList.toggle('show');
+    });
+
+    //
+    // temporary
+    //
+    function toggleContent(content) {
+        if (content === 'single') {
+            document.getElementById('singleContent').style.display = 'block';
+            document.getElementById('teamContent').style.display = 'none';
+            document.getElementById('teamTable').style.display = 'none'; // Hide teamTable
+        } else if (content === 'team') {
+            document.getElementById('singleContent').style.display = 'none';
+            document.getElementById('teamContent').style.display = 'block';
+            document.getElementById('teamTable').style.display = 'table'; // Show teamTable
+        }
+    }
+
+    toggleContent();
+
+    function showCalendar() {
+        var calendarContainer = document.getElementById('calendar-container');
+        calendarContainer.style.display = 'block';
+    }
+
+    function updateSelectedDate() {
+        var selectedDateText = document.getElementById('selected-date-text');
+        var selectedDate = document.getElementById('calendar').value;
+
+        if (selectedDate) {
+            selectedDateText.innerHTML = 'Selected Date: ' + selectedDate;
+        } else {
+            selectedDateText.innerHTML = 'Time limits don\'t selected';
+        }
+
+        var calendarContainer = document.getElementById('calendar-container');
+        calendarContainer.style.display = 'none';
+    }
+
+
+    function openModal(modalId) {
+        var modal = document.getElementById(modalId);
+        var overlay = document.querySelector('.overlay');
+        modal.style.display = "block";
+        overlay.style.display = "block";
+    }
+
+    function closeModal(modalId) {
+        var modal = document.getElementById(modalId);
+        var overlay = document.querySelector('.overlay');
+        modal.style.display = "none";
+        overlay.style.display = "none";
+    }
+
+    function closeAllModals() {
+        var modals = document.querySelectorAll('.modal');
+        var overlay = document.querySelector('.overlay');
+        modals.forEach(function (modal) {
+            modal.style.display = "none";
+        });
+        overlay.style.display = "none";
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        document.body.addEventListener('click', function (event) {
+            var modalTriggers = ['.text11', '.text12', '.text13'];
+            var isModalTrigger = modalTriggers.some(selector => event.target.closest(selector));
+
+            if (!event.target.closest('.modal') && !isModalTrigger) {
+                closeAllModals();
+            }
+        });
+    });
+
+    function validateNumberInput() {
+        var numberInput = document.getElementById('numberInput');
+        // Ensure it's a non-negative integer
+        numberInput.value = Math.max(0, parseInt(numberInput.value) || 0);
+    }
+
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+</body>
+
+</html>

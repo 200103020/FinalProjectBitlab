@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css"
+          href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/fonts.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/Project_client.css"/>
+    <script type="text/javascript" src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/sticky-js@1.3.0/dist/sticky.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/headroom.js@0.12.0/dist/headroom.min.js"></script>
+
+
+    <title>Project Page</title>
+
+</head>
+
+<body class="flex-column">
+<header class="header">
+    <section class="section1" style="--src:url(/img/0502f0f63cc56790c6952133ae2b1481.png)">
+        <div class="content_box">
+
+            <div class="searchBox">
+                <input class="searchInput" type="text" name="" placeholder="Search">
+                <button class="searchButton" href="#">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+            <a class="subtitle1" th:href="@{'/main/'}"><h3>STELLAR<br/>INVESTMENT</h3></a>
+
+            <a class="subtitle2" th:href="@{'/project/all/team/'}"><h3>Projects</h3></a>
+            <a class="subtitle21" th:href="@{'/main/'}"><h3>Home</h3></a>
+            <div class="rect1"></div>
+            <img class="image4" src="/img/ace06293b0d4076285adfa86c63156ab.png" alt=""/>
+            <div class="dropdown">
+                <img class="box" th:src="@{${user.photosImagePath}}" alt="alt text" onclick="toggleDropdown()">
+                <div id="myDropdown" class="dropdown-content">
+                    <a th:href="@{'/main/account_details'}">My Profile</a>
+                    <a th:href="@{'/project/my/'}">Project Applications</a>
+                    <a th:href="@{'/project/my/created/'}">My Projects</a>
+                    <a th:href="@{'/project/'}">Create Project</a>
+                    <a href="JavaScript:void(0)" onclick="singOutForm.submit()">Log Out
+                        <form th:action="@{'/logout'}" method="post" id="singOutForm"></form>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</header>
+<main class="projects main">
+
+
+    <section class="container">
+        <h1 class="heading">All Projects</h1>
+
+
+        <div class="box-container" th:if="${teamProjects.isEmpty()}">
+            <p>No active team projects</p>
+        </div>
+
+        <div class="box-container" th:unless="${teamProjects.isEmpty()}">
+
+            <div class="box" th:each="project : ${teamProjects}">
+                <a th:href="@{'/project/details/'+${project.id}}">
+                    <div>
+                        <img th:src="@{${project.getMainImagePath}}" alt="">
+                        <h3 th:text="${project.title}"></h3>
+                        <p th:text="${project.shortDescription}"></p>
+                        <div class="btn">
+                            <div class="skill-per" style="max-width:0">
+                                <div class="textP first">0%</div>
+
+                            </div>
+                        </div>
+                        <div class="content-container">
+                            <div class="content_box2" th:each="team : ${project.teams}">
+                                <div class="rect7"></div>
+                                <div class="info2" th:text="${team.quantity}"></div>
+                                <div class="info3" th:text="${team.position}"></div>
+                                <div class="info12">Count</div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+    </section>
+
+
+    <footer class="footer">
+        <div class="container2">
+            <div class="footerNav">
+                <div class="logoFooter">
+                    <img src="/img/logo.svg" alt="#">
+                    <a href="#">STELLAR INVESTMENT</a>
+                </div>
+                <ul class="eachNav">
+                    <li>
+                        <img src="/img/geo.svg" alt="#">
+                        <p style="width: 300px;">microdistrict Daraboz, home 123, Almaty, Kazakhstan</p>
+                    </li>
+                    <li>
+                        <img src="/img/mail.svg" alt="#">
+                        <p>contact@almightypush.com</p>
+                    </li>
+                    <li>
+                        <img src="/img/phone.svg" alt="#">
+                        <p>+7 775 203 01 90</p>
+                    </li>
+                </ul>
+            </div>
+            <p class="year">© 2024 Stellar Investment. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</main>
+<script type="text/javascript">
+
+
+    const dropdown = document.querySelector('.dropdown');
+    const dropdownContent = document.querySelector('.dropdown-content');
+
+    dropdown.addEventListener('click', function (event) {
+        dropdownContent.classList.toggle('show');
+    });
+</script>
+</body>
+
+</html>

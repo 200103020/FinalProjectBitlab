@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+          integrity="sha512-fvVGrO69KYlz0tjRGrOpRsdZIb6HemjSzExD9qQCeTtF8Zq4p21F5V32vlQ+8bXC7ZZIgAEbaHOcyEg6UeVs8A=="
+          crossorigin="anonymous"/>
+    <link rel="stylesheet" type="text/css"
+          href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"/>
+
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/common.css"/>
+    <!-- <link rel="stylesheet" type="text/css" href="./css/fonts.css" /> -->
+    <link rel="stylesheet" type="text/css" href="/css/My_investments.css"/>
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+    <title>My Investments</title>
+</head>
+
+
+<body onload="showBasicDataTab()">
+<header class="header">
+    <section class="section1" style="--src:url(/img/0502f0f63cc56790c6952133ae2b1481.png)">
+        <div class="content_box">
+
+            <div class="searchBox">
+                <input class="searchInput" type="text" name="" placeholder="Search">
+                <button class="searchButton" href="#">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+            <a class="subtitle1" th:href="@{'/main/'}"><h3>STELLAR<br/>INVESTMENT</h3></a>
+
+            <a class="subtitle2" th:href="@{'/investor/all/projects/'}"><h3>Projects</h3></a>
+            <a class="subtitle21" th:href="@{'/main/'}"><h3>Home</h3></a>
+            <img class="image4" src="/img/ace06293b0d4076285adfa86c63156ab.png" alt=""/>
+            <div class="dropdown">
+                <img class="box" th:src="@{${user.photosImagePath}}" alt="alt text" onclick="toggleDropdown()">
+                <div id="myDropdown" class="dropdown-content">
+                    <a th:href="@{'/main/account_details'}">My Profile</a>
+                    <a th:href="@{'/investor/my/investments'}">My Investments</a>
+                    <a href="JavaScript:void(0)" onclick="singOutForm.submit()">Log Out
+                        <form th:action="@{'/logout'}" method="post" id="singOutForm"></form>
+                    </a>
+                </div>
+            </div>
+
+            <a th:href="@{'/investor/basket/'}">
+                <div class="wrapper5" style="--src:url(/img/purchase.png)"></div>
+            </a>
+
+        </div>
+    </section>
+</header>
+
+<main class="kaif main">
+    <section class="orders">
+        <div class="container">
+            <div id="success-box" th:if="${param.paid != null}">
+                <div class="dot"></div>
+                <div class="dot two"></div>
+                <div class="face">
+                    <div class="eye"></div>
+                    <div class="eye right"></div>
+                    <div class="mouth happy"></div>
+                </div>
+                <div class="shadow scale"></div>
+                <div class="message">
+                    <h1 class="alert">Successfully paid!</h1>
+                    <p>Stay tuned further updates of project</p>
+                </div>
+                <button class="button-box" onclick="hideSuccessBox()"><h1 class="green">Great</h1></button>
+            </div>
+
+            <ul class="nav">
+                <li class="nav-item"><a class="nav-link active" href="#" onclick="showTab(event, 'investments')"
+                                        style="border: 1px solid #23424A; border-radius: 5px;">My Investments</a></li>
+
+                <li class="nav-item"><a class="nav-link" href="#" onclick="showTab(event, 'transactions')"
+                                        style="border: 1px solid #23424A; border-radius: 5px;">Transactions</a></li>
+            </ul>
+
+            <div class="tab-content investments">
+                <p style="text-align: center;
+               font-size: 20px;
+               padding: 20px;" th:if="${investments.isEmpty()}">No active investment</p>
+                <table class="sheet" th:if="${!investments.isEmpty()}">
+                    <div class="card_info">
+                        <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Title</th>
+                            <th>Tariff info</th>
+                            <th>Type of Tariff</th>
+                            <th>Applied Finance, ₸</th>
+                        </tr>
+                        </thead>
+                        <tbody th:each="investment : ${investments}">
+                        <tr>
+                            <td>
+                                <img th:src="@{${investment.project.getMainImagePath}}" class="image_1"
+                                     style="border-radius:15px; width: 140px; height: 100px;" alt="Image Description">
+                            </td>
+                            <td th:text="${investment.project.title}"></td>
+                            <td th:text="${investment.projectTariff.tariffInfo}"></td>
+                            <td>
+                                <span style="color: #000" th:text="${investment.projectTariff.tariffName}"></span>
+
+                            </td>
+                            <td>
+
+                                <span style="color: #000" th:text="${investment.investedMoney}"></span>
+
+                            </td>
+                        </tr>
+
+                        </tbody>
+
+
+                    </div>
+
+                </table>
+
+            </div>
+
+
+            <div id="transactions" class="tab-content transactions" style="display:none;">
+                <p style="text-align: center;
+               font-size: 20px;
+               padding: 20px;" th:if="${investments.isEmpty()}">No active transactions</p>
+                <table class="sheet" style="margin-top: 20px" th:if="${!investments.isEmpty()}">
+                    <div class="card_info">
+                        <thead>
+                        <tr>
+                            <th>External Identifier</th>
+                            <th>Status</th>
+                            <th>Date of Payment</th>
+
+                            <th>Collecting</th>
+                            <th>Payment Gateway</th>
+
+                        </tr>
+                        </thead>
+                        <tbody th:each="investment : ${investments}">
+                        <tr>
+                            <td><span style="color: #000" th:text="${investment.identifier}"></span></td>
+                            <td><span style="color: #000">Paid</span></td>
+                            <td><span style="color: #000" th:text="${investment.investedTime}"></span></td>
+                            <td>
+                                <span style="color: #000" th:text="${investment.investedMoney}"></span>
+                            </td>
+                            <td>
+                                <span style="color: #000" th:text="${investment.banked}"></span>
+                            </td>
+
+                        </tr>
+                        </tbody>
+
+                    </div>
+                </table>
+            </div>
+
+        </div>
+    </section>
+</main>
+
+
+<footer class="footer">
+    <div class="container2">
+        <div class="footerNav">
+            <div class="logoFooter">
+                <img src="/img/logo.svg" alt="#">
+                <a href="#">STELLAR INVESTMENT</a>
+            </div>
+            <ul class="eachNav">
+                <li>
+                    <img src="/img/geo.svg" alt="#">
+                    <p style="width: 300px;">microdistrict Daraboz, home 123, Almaty, Kazakhstan</p>
+                </li>
+                <li>
+                    <img src="/img/mail.svg" alt="#">
+                    <p>contact@almightypush.com</p>
+                </li>
+                <li>
+                    <img src="/img/phone.svg" alt="#">
+                    <p>+7 775 203 01 90</p>
+                </li>
+            </ul>
+        </div>
+        <p class="year">© 2024 Stellar Investment. All Rights Reserved.</p>
+    </div>
+</footer>
+
+
+<script type="text/javascript">
+
+    const dropdown = document.querySelector('.dropdown');
+    const dropdownContent = document.querySelector('.dropdown-content');
+
+    dropdown.addEventListener('click', function (event) {
+        dropdownContent.classList.toggle('show');
+    });
+
+
+    $(document).ready(function () {
+        // Add click event listener to all list items
+        $('.nav li').click(function () {
+            // Remove active class from all list items
+            $('.nav li').removeClass('active');
+
+            // Add active class to the clicked list item
+            $(this).addClass('active');
+        });
+    });
+
+    function showTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+
+        // Get all tab content elements
+        tabcontent = document.getElementsByClassName("tab-content");
+
+        // Hide all tab content elements
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Get all tab link elements
+        tablinks = document.getElementsByClassName("nav-link");
+
+        // Remove active class from all tab links
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].classList.remove("active");
+        }
+
+        // Show the selected tab content element
+        var tabToShow = document.getElementsByClassName(tabName);
+        for (i = 0; i < tabToShow.length; i++) {
+            tabToShow[i].style.display = "block";
+        }
+
+        // Add active class to the clicked tab link
+        evt.currentTarget.classList.add("active");
+
+        // Prevent default link behavior
+        evt.preventDefault();
+    }
+
+    var detailsButtons = document.querySelectorAll('.accept');
+
+    detailsButtons.forEach(function (detailsButton) {
+        detailsButton.addEventListener('click', function () {
+            window.location.href = 'Detail_page_admin.html';
+        });
+    });
+
+    function hideSuccessBox() {
+        var successBox = document.getElementById('success-box');
+        if (successBox) {
+            successBox.style.display = 'none';
+        }
+    }
+
+</script>
+
+</body>
+
+</html>

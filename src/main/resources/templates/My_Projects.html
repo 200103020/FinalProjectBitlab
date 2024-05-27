@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-fvVGrO69KYlz0tjRGrOpRsdZIb6HemjSzExD9qQCeTtF8Zq4p21F5V32vlQ+8bXC7ZZIgAEbaHOcyEg6UeVs8A==" crossorigin="anonymous" />-->
+    <link rel="stylesheet" type="text/css"
+          href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"/>
+
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/fonts.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/My_projects.css"/>
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+    <title>My Projects</title>
+</head>
+
+
+<body>
+<header class="header">
+    <section class="section1" style="--src:url(/img/0502f0f63cc56790c6952133ae2b1481.png)">
+        <div class="content_box">
+
+            <div class="searchBox">
+                <input class="searchInput" type="text" name="" placeholder="Search">
+                <button class="searchButton" href="#">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+            <a class="subtitle1" th:href="@{'/main/'}"><h3>STELLAR<br/>INVESTMENT</h3></a>
+
+            <a class="subtitle2" th:href="@{'/project/all/team/'}"><h3>Projects</h3></a>
+            <a class="subtitle21" th:href="@{'/main/'}"><h3>Home</h3></a>
+
+            <img class="image4" src="/img/ace06293b0d4076285adfa86c63156ab.png" alt=""/>
+            <div class="dropdown">
+                <img class="box" th:src="@{${user.photosImagePath}}" alt="alt text">
+                <div id="myDropdown" class="dropdown-content">
+                    <a th:href="@{'/main/account_details'}">My Profile</a>
+                    <a th:href="@{'/project/my/'}">Project Applications</a>
+                    <a th:href="@{'/project/my/created/'}">My Projects</a>
+                    <a th:href="@{'/project/'}">Create Project</a>
+                    <a href="JavaScript:void(0)" onclick="singOutForm.submit()">Log Out
+                        <form th:action="@{'/logout'}" method="post" id="singOutForm"></form>
+                    </a>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+</header>
+
+<main class="kaif main">
+    <section class="orders">
+        <div id="success-box" th:if="${param.success != null}">
+            <div class="dot"></div>
+            <div class="dot two"></div>
+            <div class="face">
+                <div class="eye"></div>
+                <div class="eye right"></div>
+                <div class="mouth happy"></div>
+            </div>
+            <div class="shadow scale"></div>
+            <div class="message">
+                <h1 class="alert">New project created!</h1>
+                <p>Stay tuned for updates on that
+                    page.</p>
+            </div>
+            <button class="button-box" onclick="hideSuccessBox()"><h1 class="green">Great</h1></button>
+        </div>
+
+        <div id="success-box" th:if="${param.approved != null}">
+            <div class="dot"></div>
+            <div class="dot two"></div>
+            <div class="face">
+                <div class="eye"></div>
+                <div class="eye right"></div>
+                <div class="mouth happy"></div>
+            </div>
+            <div class="shadow scale"></div>
+            <div class="message">
+                <h1 class="alert">Candidate has approved!</h1>
+                <p>Stay tuned for updates on that
+                    page.</p>
+            </div>
+            <button class="button-box" onclick="hideSuccessBox()"><h1 class="green">Great</h1></button>
+        </div>
+
+        <div id="error-box" th:if="${param.statusChanged != null}">
+            <div class="dot"></div>
+            <div class="dot two"></div>
+            <div class="face2">
+                <div class="eye"></div>
+                <div class="eye right"></div>
+                <div class="mouth sad"></div>
+            </div>
+            <div class="shadow move"></div>
+            <div class="message">
+                <h1 class="alert">The required number of candidates has been collected!</h1>
+                <p>Now wait for a response on investor access</p>
+            </div>
+            <button class="button-box" onclick="hideErrorBox()"><h1 class="red">Okay</h1></button>
+        </div>
+
+        <div id="error-box" th:if="${param.refused != null}">
+            <div class="dot"></div>
+            <div class="dot two"></div>
+            <div class="face2">
+                <div class="eye"></div>
+                <div class="eye right"></div>
+                <div class="mouth sad"></div>
+            </div>
+            <div class="shadow move"></div>
+            <div class="message">
+                <h1 class="alert">Candidate has refused!</h1>
+                <p>Stay tuned for updates on that
+                    page.</p>
+            </div>
+            <button class="button-box" onclick="hideErrorBox()"><h1 class="red">Okay</h1></button>
+        </div>
+
+        <div id="error-box" th:if="${param.full != null}">
+            <div class="dot"></div>
+            <div class="dot two"></div>
+            <div class="face2">
+                <div class="eye"></div>
+                <div class="eye right"></div>
+                <div class="mouth sad"></div>
+            </div>
+            <div class="shadow move"></div>
+            <div class="message">
+                <h1 class="alert">Ups!</h1>
+                <p>Needed amount of candidate is
+                    already full!</p>
+            </div>
+            <button class="button-box" onclick="hideErrorBox()"><h1 class="red">Okay</h1></button>
+        </div>
+
+        <div class="container">
+            <ul class="nav">
+                <li><a href="#applied-persons" onclick="showTab(event, 'applied-persons')">List of applied people</a>
+                </li>
+                <li><a href="#investors" onclick="showTab(event, 'investors')">List of investors</a></li>
+            </ul>
+
+            <div class="tab-content applied-persons" th:if="${myProjects.isEmpty()}">
+                <p style="text-align: center;
+               font-size: 20px;
+               padding: 20px;">No active team projects you've created</p>
+            </div>
+
+            <div class="tab-content applied-persons" th:unless="${myProjects.isEmpty()}"
+                 th:each="myProject : ${myProjects}" style="margin-bottom: 30px">
+                <table class="main_table">
+                    <thead>
+                    <tr>
+                        <th>№</th>
+                        <th>Description of the project</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td th:text="${myProject.id}"></td>
+                        <td>
+                            <div class="cards_item">
+                                <div class="image">
+                                    <img th:src="@{${myProject.getMainImagePath}}">
+                                </div>
+                                <div class="text">
+                                    <div class="text_item">
+                                        <h3>Title:</h3>
+                                        <p th:text="${myProject.title}"></p>
+                                    </div>
+                                    <div class="text_item">
+                                        <h3>Brief Info:</h3>
+                                        <p th:text="${myProject.shortDescription}"></p>
+                                    </div>
+                                    <div class="text_item">
+                                        <h3>Status:</h3>
+                                        <p th:text="${myProject.status}"></p>
+                                    </div>
+                                    <div class="text_item">
+                                        <h3>Deadline:</h3>
+                                        <p th:text="${myProject.finishTime}"></p>
+                                    </div>
+                                    <div class="text_item">
+                                        <h3>Fund:</h3>
+                                        <p th:text="${myProject.amountNeeded}"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                    <thead class="description">
+                    <tr>
+                        <th></th>
+                        <th>Users who have applied for this project</th>
+                    </tr>
+                    </thead>
+                </table>
+                <table class="sheet">
+                    <div class="card_info">
+                        <thead>
+                        <tr>
+                            <th>№</th>
+                            <th>Name</th>
+                            <th>Last Name</th>
+                            <th>Application Date</th>
+                            <th>Link to CV</th>
+                            <th>Position Applied For</th>
+                            <th>Phone Number</th>
+                            <th>Status</th>
+                            <th th:if="${myProject.status != T(com.example.stellarinvestment.model.project.ProjectStatus).WAITING}">Decision</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="candidate : ${myProject.candidates}">
+                            <td th:text="${candidate.id}"></td>
+                            <td th:text="${candidate.user.firstName}"></td>
+                            <td th:text="${candidate.user.lastName}"></td>
+                            <td th:text="${candidate.appliedTime}"></td>
+                            <td th:text="${candidate.cvLink}"></td>
+                            <td th:text="${candidate.projectTeam.position}"></td>
+                            <td th:text="${candidate.phoneNumber}"></td>
+                            <td th:switch="${candidate.status}">
+                                <span th:case="0" style="color: #0024A2">Waiting</span>
+                                <span th:case="1" style="color: #1a8a12">Accepted</span>
+                                <span th:case="2" style="color: red">Rejected</span>
+                            </td>
+                            <td th:if="${myProject.status == T(com.example.stellarinvestment.model.project.ProjectStatus).TEAM_FORMATION}">
+                                <div class="btns">
+                                    <form th:action="@{'/project/approve'}" method="post">
+                                        <!--                                        <input type="hidden" name="teamId" th:value="${candidate.projectTeam.id}">-->
+                                        <input type="hidden" name="applicantId" th:value="${candidate.id}">
+                                        <button type="submit" class="approve"
+                                                th:style="${candidate.status == 1 ? 'display: none' : ''}">
+                                            ✓
+                                        </button>
+                                    </form>
+                                    <form th:action="@{'/project/refuse'}" method="post">
+                                        <input type="hidden" name="refuseapplicantId" th:value="${candidate.id}">
+                                        <button type="submit" class="reject"
+                                                th:style="${candidate.status == 2 ? 'display: none' : ''}">
+                                            X
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </div>
+
+                </table>
+            </div>
+
+
+            <div id="investors" class="tab-content investors" style="display:none; margin-bottom: 30px" th:each="myInvestmentProject : ${myInvestmentProjects}">
+                <div class="tab-content applied-persons" th:if="${myInvestmentProjects.isEmpty()}">
+                    <p style="text-align: center;
+               font-size: 20px;
+               padding: 20px;">No active projects in progress</p>
+                </div>
+                <table class="main_table">
+                    <thead>
+                    <tr>
+                        <th>№</th>
+                        <th>Description of the project</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td th:text="${myInvestmentProject.id}"></td>
+                        <td>
+                            <div class="cards_item">
+                                <div class="image">
+                                    <img th:src="@{${myInvestmentProject.getMainImagePath}}">
+                                </div>
+                                <div class="text">
+                                    <div class="text_item">
+                                        <h3>Title:</h3>
+                                        <p th:text="${myInvestmentProject.title}"></p>
+                                    </div>
+                                    <div class="text_item">
+                                        <h3>Brief Info:</h3>
+                                        <p th:text="${myInvestmentProject.shortDescription}"></p>
+                                    </div>
+                                    <div class="text_item">
+                                        <h3>Status:</h3>
+                                        <p th:text="${myInvestmentProject.status}"></p>
+                                    </div>
+                                    <div class="text_item">
+                                        <h3>Deadline:</h3>
+                                        <p th:text="${myInvestmentProject.finishTime}"></p>
+                                    </div>
+                                    <div class="text_item">
+                                        <h3>Fund:</h3>
+                                        <p th:text="${myInvestmentProject.amountNeeded}"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                    <thead class="description">
+                    <tr>
+                        <th></th>
+                        <th>Investors who have invested for this project</th>
+                    </tr>
+                    </thead>
+                </table>
+                <table class="sheet">
+                    <div class="card_info">
+                        <thead>
+                        <tr>
+                            <th>№</th>
+                            <th>Name</th>
+                            <th>Last Name</th>
+                            <th>Invested Date</th>
+                            <th>Invested Money</th>
+                            <th>Chosen Tariff Name</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="investor : ${myInvestmentProject.investments}">
+                            <td th:text="${investor.id}"></td>
+                            <td th:text="${investor.user.firstName}"></td>
+                            <td th:text="${investor.user.lastName}"></td>
+                            <td th:text="${investor.investedTime}"></td>
+                            <td th:text="${investor.investedMoney}"></td>
+                            <td th:text="${investor.projectTariff.tariffName}"></td>
+                        </tr>
+                        </tbody>
+                    </div>
+
+                </table>
+            </div>
+
+
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="container2">
+        <div class="footerNav">
+            <div class="logoFooter">
+                <img src="/img/logo.svg" alt="#">
+                <a href="#">STELLAR INVESTMENT</a>
+            </div>
+            <ul class="eachNav">
+                <li>
+                    <img src="/img/geo.svg" alt="#">
+                    <p style="width: 300px;">microdistrict Daraboz, home 123, Almaty, Kazakhstan</p>
+                </li>
+                <li>
+                    <img src="/img/mail.svg" alt="#">
+                    <p>contact@almightypush.com</p>
+                </li>
+                <li>
+                    <img src="/img/phone.svg" alt="#">
+                    <p>+7 775 203 01 90</p>
+                </li>
+            </ul>
+        </div>
+        <p class="year">© 2024 Stellar Investment. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<script type="text/javascript">
+
+    const dropdown = document.querySelector('.dropdown');
+    const dropdownContent = document.querySelector('.dropdown-content');
+
+    dropdown.addEventListener('click', function (event) {
+        dropdownContent.classList.toggle('show');
+    });
+
+    $(document).ready(function () {
+        // Initialize the tab component
+        $('.nav-tabs a').click(function () {
+            $(this).tab('show');
+        });
+    });
+
+    function showTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+
+        tabcontent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        var tabToShow = document.getElementsByClassName(tabName);
+        for (i = 0; i < tabToShow.length; i++) {
+            tabToShow[i].style.display = "block";
+        }
+        evt.preventDefault();
+    }
+
+    function hideSuccessBox() {
+        var successBox = document.getElementById('success-box');
+        if (successBox) {
+            successBox.style.display = 'none';
+        }
+    }
+
+    function hideErrorBox() {
+        var errorBox = document.getElementById('error-box');
+        if (errorBox) {
+            errorBox.style.display = 'none';
+        }
+    }
+</script>
+
+</body>
+
+</html>

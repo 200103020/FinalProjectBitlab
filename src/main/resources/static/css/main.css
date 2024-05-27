@@ -1,0 +1,2075 @@
+.body {
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    margin-top: 90px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.item-container {
+    position: relative;
+    margin: 24px;
+    width: 360px;
+    height: 570px;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 0 30px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.img-container,
+.body-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.img-container img {
+    width: 100%;
+}
+
+.body-container {
+    position: relative;
+}
+
+.overlay {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background-color: rgb(59, 112, 125, 0.6);
+    opacity: 0;
+    transition: height linear 0.4s, opacity linear 0.2s;
+}
+
+.item-container:hover .overlay {
+    opacity: 1;
+    height: 150px;
+}
+
+.event-info {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+}
+
+.title {
+    color: #23424A;
+    font-size: 1.5em;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin: 12px;
+}
+.price {
+    color: #23424A;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin: 12px;
+}
+
+.info {
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+}
+
+.separator {
+    width: 70%;
+    height: 20px;
+
+    background: linear-gradient(to right, #ff7f50 80%, #23424A 20%);
+    margin-bottom: 16px;
+    position: relative;
+}
+.textP {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff; /* Set text color to white or any other suitable color */
+}
+
+.first {
+    left: 37%; /* Adjust the left value for the first text */
+}
+
+.second {
+    left: 84%; /* Adjust the left value for the second text */
+}
+
+.additional-info {
+    border-top: 1px solid #3B707D;
+    margin-top: 12px;
+    padding: 28px;
+    padding-bottom: 0;
+}
+
+.additional-info .info {
+    font-size: 0.9em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.info i {
+    color: #18537a;
+    font-size: 1.1em;
+    margin-right: 4px;
+}
+
+.info span {
+    color: #18537a;
+    font-weight: bolder;
+}
+
+.action {
+    color: #fff;
+    border: 3px solid #fff;
+    background-color: transparent;
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    outline: none;
+    cursor: pointer;
+    padding: 12px;
+    text-transform: uppercase;
+    font-size: 1.3em;
+    font-weight: bold;
+    letter-spacing: 2px;
+    transition: background-color 0.4s, top 0.4s;
+}
+
+.item-container:hover .action {
+    top: 50px;
+}
+
+.action:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.header {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+a {
+    text-decoration: none;
+    font: 700 20px/1.35 "Roboto", sans-serif;
+
+}
+
+.header .section1 {
+    background: var(--src) center center/100% 100% no-repeat;
+    display: flex;
+    flex-direction: column;
+}
+
+.header .content_box {
+    display: flex;
+    flex-direction: column;
+    height: 58px;
+    margin: 47px 122px 217px;
+    min-height: 58px;
+    position: relative;
+    width: 1196px;
+}
+
+.header .searchBox {
+    position: absolute;
+    top: 53%;
+    left: 74%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    height: 40px;
+    border-radius: 40px;
+    padding: 0px;
+}
+
+.header .searchBox:hover > .searchInput {
+    width: 240px;
+    padding: 0 6px;
+}
+
+.header .searchBox:hover > .searchButton {
+    background: #23424A;
+    color: white;
+}
+
+.header .searchButton {
+    color: white;
+    float: right;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #ff7f50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+}
+
+.header .searchInput {
+    border: none;
+    background: none;
+    outline: none;
+    float: left;
+    padding: 0;
+    color: #23424A;
+    font-size: 16px;
+    transition: 0.4s;
+    line-height: 40px;
+    width: 0px;
+
+}
+
+
+.header .subtitle1 {
+    bottom: 0px;
+    color: white;
+    font: 700 20px/1.35 "Roboto", sans-serif;
+    height: 54px;
+    left: 66px;
+    position: absolute;
+    right: 972px;
+    top: 4px;
+    width: 158px;
+}
+
+.header .subtitle2 {
+    bottom: 16px;
+    color: white;
+    font: 500 20px/1.35 "Roboto", sans-serif;
+    height: 27px;
+    left: 501px;
+    position: absolute;
+    right: 620px;
+    top: 15px;
+    width: 75px;
+}
+
+.header .subtitle21 {
+    bottom: 16px;
+    color: white;
+    font: 500 20px/1.35 "Roboto", sans-serif;
+    height: 27px;
+    left: 389px;
+    position: absolute;
+    right: 753px;
+    top: 15px;
+    width: 54px;
+}
+
+.header .rect1 {
+    background-color: white;
+    bottom: 14px;
+    height: 3px;
+    left: 389px;
+    position: absolute;
+    right: 750px;
+    top: 41px;
+    width: 57px;
+}
+
+.header .image4 {
+    border-radius: 20px 20px 20px 20px;
+    bottom: 1px;
+    height: 57px;
+    left: 0px;
+    position: absolute;
+    right: 1144px;
+    top: 0px;
+    width: 52px;
+}
+
+.dropdown {
+    float: left;
+    overflow: hidden;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    right: calc(92vw - 1490px);
+    top: calc(100% + 5px);
+}
+
+.dropdown.clicked .dropdown-content {
+    display: block;
+
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+
+}
+
+/* Add a grey background color to dropdown links on hover */
+.dropdown-content a:hover {
+    background-color: #23424A;
+    border-radius: 10px;
+    color: #fff
+}
+
+
+.dropdown .dropdown-content.show {
+    display: block;
+}
+
+.header .box {
+    background-color: coral;
+    border-radius: 10px 10px 10px 10px;
+    display: flex;
+    gap: 0px 4px;
+    height: 41px;
+    position: absolute;
+    right: 0px;
+    top: 10px;
+    width: 105px;
+    cursor: pointer;
+}
+
+.header .box2 {
+    border-radius: 30px 30px 30px 30px;
+    bottom: 1px;
+    height: 57px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 57px;
+    cursor: pointer;
+}
+
+.header .wrapper1 {
+    height: 20px;
+    margin: 9px 0px 14px 17px;
+    width: 20px;
+}
+
+.header .subtitle22 {
+    color: white;
+    font: 500 20px/1.35 "Roboto", sans-serif;
+    height: 27px;
+    margin: 7px 14px 7px 0px;
+    width: 50px;
+}
+
+.header .wrapper5 {
+    background: var(--src) center center/100% 100% no-repeat;
+    display: flex;
+    flex-direction: column;
+    height: 24px;
+    overflow: hidden;
+    position: absolute;
+    right: 144px;
+    top: 18px;
+    width: 25px;
+}
+
+.main {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.main .section2 {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.main .group {
+    display: flex;
+    flex-direction: column;
+    height: 467px;
+    left: 122px;
+    position: absolute;
+    top: 9px;
+    width: 1196px;
+}
+
+.main .group1 {
+    display: flex;
+    flex-direction: column;
+    height: 467px;
+    left: 0px;
+    position: absolute;
+    top: 0px;
+    width: 1196px;
+}
+
+.main .rect16 {
+    background-color: white;
+    border-radius: 40px 40px 40px 40px;
+    height: 467px;
+    left: 0px;
+    outline: 1px solid black;
+    outline-offset: -1px;
+    position: absolute;
+    top: 0px;
+    width: 1196px;
+}
+
+.main .image17 {
+    height: 75px;
+    left: 672px;
+    position: absolute;
+    top: 20px;
+    width: 205px;
+}
+
+.main .rect17 {
+    background-color: coral;
+    border-radius: 7.5px 7.5px 7.5px 7.5px;
+    height: 15px;
+    position: absolute;
+    right: 36px;
+    top: 71px;
+    width: 237px;
+}
+
+.main .subtitle15 {
+    color: black;
+    display: flex;
+    font: 500 20px/1.35 "Roboto", sans-serif;
+    height: 27px;
+    justify-content: flex-end;
+    left: 81px;
+    position: absolute;
+    text-align: right;
+    top: 34px;
+    width: 1034px;
+}
+
+.main .medium_title2_box {
+    height: 209px;
+    position: absolute;
+    right: 59px;
+    top: 142px;
+    width: 458px;
+}
+
+.main .medium_title2 {
+    color: black;
+    font: 700 24px/1.66 "Roboto", sans-serif;
+}
+
+.main .medium_title2_span0 {
+    color: #23424a;
+    font: 600 1em/1.66 "Avenir Next", sans-serif;
+}
+
+.main .medium_title2_span1 {
+    color: #3b707d;
+    font: 500 0.8333333333em/2 "Avenir Next", sans-serif;
+}
+
+.main .group2 {
+    display: flex;
+    flex-direction: column;
+    height: 467px;
+    left: 0px;
+    position: absolute;
+    top: 0px;
+    width: 667px;
+}
+
+.main .image16 {
+    border-radius: 40px 40px 40px 40px;
+    height: 467px;
+    left: 0px;
+    position: absolute;
+    top: 0px;
+    width: 667px;
+}
+
+.main .group3 {
+    display: flex;
+    flex-direction: column;
+    height: 19px;
+    position: absolute;
+    right: -488px;
+    top: 105px;
+    width: 1114px;
+}
+
+.main .text2 {
+    color: black;
+    display: flex;
+    font: 500 14px/1.35 "Roboto", sans-serif;
+    height: 19px;
+    justify-content: flex-end;
+    left: 146px;
+    position: absolute;
+    text-align: right;
+    top: 0px;
+    width: 822px;
+}
+
+.main .text21 {
+    color: black;
+    display: flex;
+    font: 500 14px/1.35 "Roboto", sans-serif;
+    height: 19px;
+    justify-content: flex-end;
+    left: 0px;
+    position: absolute;
+    text-align: right;
+    top: 0px;
+    width: 1114px;
+}
+
+.main .group4 {
+    display: flex;
+    flex-direction: column;
+    margin: 396px 28.47% 84px auto;
+    position: relative;
+    width: 203px;
+}
+
+.main .rect18 {
+    background-color: #f2f2f7;
+    border-radius: 10px 10px 10px 10px;
+    min-height: 36px;
+    position: relative;
+}
+
+.main .group5 {
+    display: flex;
+    flex-direction: column;
+    height: 40px;
+    left: -395px;
+    position: absolute;
+    top: 0px;
+    width: 576px;
+}
+
+.main .subtitle16 {
+    color: black;
+    display: flex;
+    font: 500 20px/2 "Roboto", sans-serif;
+    height: 40px;
+    justify-content: flex-end;
+    left: 0px;
+    position: absolute;
+    text-align: right;
+    top: 0px;
+    width: 576px;
+}
+
+.main .group6 {
+    display: flex;
+    flex-direction: column;
+    height: 40px;
+    left: -168px;
+    position: absolute;
+    top: 1px;
+    width: 912px;
+}
+
+.main .rect19 {
+    background-color: #22424a;
+    border-radius: 10px 10px 10px 10px;
+    height: 36px;
+    position: absolute;
+    right: -8px;
+    top: 0px;
+    width: 79px;
+}
+
+.main .subtitle17 {
+    color: white;
+    display: flex;
+    font: 500 20px/2 "Roboto", sans-serif;
+    height: 40px;
+    justify-content: flex-end;
+    left: 0px;
+    position: absolute;
+    text-align: right;
+    top: 0px;
+    width: 912px;
+}
+
+.main .section3 {
+    display: flex;
+    flex-direction: column;
+    min-height: 745px;
+    position: relative;
+}
+
+.main .rect2 {
+    background-color: #ff8055;
+    bottom: 35px;
+    height: 3px;
+    left: 558px;
+    position: absolute;
+    width: 321px;
+}
+
+.main .medium_title {
+    bottom: 40px;
+    color: black;
+    font: 500 24px/1.66 "Roboto", sans-serif;
+    height: 40px;
+    left: 560px;
+    position: absolute;
+    width: 320px;
+}
+
+.main .content_box1 {
+    display: flex;
+    flex-direction: column;
+    height: 474px;
+    position: absolute;
+    right: 122px;
+    top: 155px;
+    width: 366px;
+}
+
+.main .rect4 {
+    background-color: white;
+    border-radius: 15px 15px 15px 15px;
+    bottom: 0px;
+    height: 368px;
+    left: 0px;
+    outline: 1px solid #64a9a6;
+    outline-offset: -1px;
+    position: absolute;
+    right: 0px;
+    top: 106px;
+    width: 366px;
+}
+
+.main .text {
+    bottom: 18px;
+    color: #555555;
+    font: 700 14px/2.85 "Roboto", sans-serif;
+    height: 40px;
+    left: 220px;
+    position: absolute;
+    right: 34px;
+    top: 416px;
+    width: 112px;
+}
+
+.main .subtitle3 {
+    bottom: 47px;
+    color: #333333;
+    font: 400 20px/2 "Roboto", sans-serif;
+    height: 40px;
+    left: 253px;
+    position: absolute;
+    right: 30px;
+    top: 387px;
+    width: 83px;
+}
+
+.main .text1 {
+    bottom: 18px;
+    color: #555555;
+    font: 700 14px/2.85 "Roboto", sans-serif;
+    height: 40px;
+    left: 19px;
+    position: absolute;
+    right: 298px;
+    top: 416px;
+    width: 49px;
+}
+
+.main .subtitle4 {
+    bottom: 47px;
+    color: black;
+    font: 400 20px/2 "Roboto", sans-serif;
+    height: 40px;
+    left: 19px;
+    position: absolute;
+    right: 299px;
+    top: 387px;
+    width: 48px;
+}
+
+.main .rect5 {
+    background-color: #65a9a6;
+    border-radius: 11.5px 11.5px 11.5px 11.5px;
+    bottom: 87px;
+    height: 23px;
+    left: 170px;
+    position: absolute;
+    right: 24px;
+    top: 364px;
+    width: 172px;
+}
+
+.main .rect6 {
+    background-color: coral;
+    border-radius: 11.5px 11.5px 11.5px 11.5px;
+    bottom: 87px;
+    height: 23px;
+    left: 13px;
+    position: absolute;
+    right: 116px;
+    top: 364px;
+    width: 237px;
+}
+
+.main .image5 {
+    border-radius: 15px 15px 15px 15px;
+    height: 151px;
+    left: 0px;
+    position: absolute;
+    top: 0px;
+    width: 366px;
+}
+
+.main .medium_title2_box1 {
+    height: 167px;
+    left: 13px;
+    position: absolute;
+    top: 161px;
+    width: 347px;
+}
+
+.main .medium_title2_span2 {
+    color: #64a9a6;
+    font: 500 0.8333333333em/2 "Avenir Next", sans-serif;
+}
+
+.main .hero_title1 {
+    color: #23424a;
+    font: 700 40px/1 "Roboto", sans-serif;
+    height: 40px;
+    left: 124px;
+    position: absolute;
+    top: 26px;
+    width: 1192px;
+}
+
+.main .content_box11 {
+    display: flex;
+    flex-direction: column;
+    height: 474px;
+    left: 537px;
+    position: absolute;
+    top: 155px;
+    width: 366px;
+}
+
+.main .content_box12 {
+    display: flex;
+    flex-direction: column;
+    height: 474px;
+    left: 124px;
+    position: absolute;
+    top: 155px;
+    width: 366px;
+}
+
+.main .image6 {
+    bottom: 50px;
+    height: 20px;
+    left: 847px;
+    position: absolute;
+    width: 34px;
+}
+
+.main .section4 {
+    display: flex;
+    flex-direction: column;
+    min-height: 1060px;
+    position: relative;
+}
+
+.main .group7 {
+    display: flex;
+    flex-direction: column;
+    height: 465px;
+    left: 0px;
+    position: absolute;
+    top: 50px;
+    width: 100%;
+}
+
+.main .group8 {
+    display: flex;
+    flex-direction: column;
+    height: 465px;
+    left: 0px;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+}
+
+.main .cover1 {
+    height: 465px;
+    left: 0px;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+}
+
+.main .image {
+    border-radius: 15px 15px 15px 15px;
+    bottom: 24px;
+    height: 112px;
+    position: absolute;
+    right: 123px;
+    width: 110px;
+}
+
+.main .image1 {
+    border-radius: 15px 15px 15px 15px;
+    bottom: 24px;
+    height: 112px;
+    position: absolute;
+    right: 272px;
+    width: 110px;
+}
+
+.main .group9 {
+    display: flex;
+    flex-direction: column;
+    height: 40px;
+    left: 124px;
+    position: absolute;
+    top: 205px;
+    width: 1192px;
+}
+
+.main .group10 {
+    display: flex;
+    flex-direction: column;
+    height: 40px;
+    left: 0px;
+    position: absolute;
+    top: 0px;
+    width: 1192px;
+}
+
+.main .hero_title {
+    color: white;
+    font: 700 40px/1 "Roboto", sans-serif;
+    height: 40px;
+    left: 0px;
+    position: absolute;
+    top: 0px;
+    width: 1192px;
+}
+
+.main .image2 {
+    border-radius: 15px 15px 15px 15px;
+    height: 112px;
+    position: absolute;
+    right: -1px;
+    top: -33px;
+    width: 110px;
+}
+
+.main .image3 {
+    border-radius: 15px 15px 15px 15px;
+    height: 112px;
+    position: absolute;
+    right: 148px;
+    top: -28px;
+    width: 110px;
+}
+
+.main .hero_title2 {
+    color: white;
+    display: flex;
+    font: 700 40px/1 "Roboto", sans-serif;
+    height: 40px;
+    justify-content: flex-end;
+    left: 316px;
+    position: absolute;
+    text-align: right;
+    top: 3px;
+    width: 560px;
+}
+
+.main .group11 {
+    display: flex;
+    flex-direction: column;
+    height: 40px;
+    left: 478px;
+    position: absolute;
+    top: 2px;
+    width: 236px;
+}
+
+.main .rect3 {
+    background-color: #ff8055;
+    border-radius: 10px 10px 10px 10px;
+    height: 46px;
+    left: -15px;
+    position: absolute;
+    top: -2px;
+    width: 224px;
+}
+
+.main .hero_title21 {
+    color: black;
+    font: 700 40px/1 "Roboto", sans-serif;
+    height: 40px;
+    left: 0px;
+    position: absolute;
+    top: 0px;
+    width: 236px;
+}
+
+.main .medium_title1 {
+    color: white;
+    font: 500 24px/1.66 "Roboto", sans-serif;
+    height: 120px;
+    left: 124px;
+    position: absolute;
+    top: 268px;
+    width: 702px;
+}
+
+.main .group12 {
+    display: flex;
+    flex-direction: column;
+    height: 508px;
+    left: 0px;
+    position: absolute;
+    top: 508px;
+    width: 100%;
+}
+
+.main .group13 {
+    display: flex;
+    flex-direction: column;
+    height: 508px;
+    left: 0px;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+}
+
+.main .decorator {
+    height: 508px;
+    left: 0px;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+}
+
+.main .flex_col {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 9px 0px;
+    height: 89px;
+    left: 455px;
+    position: absolute;
+    top: 129px;
+    width: 230px;
+}
+
+.main .highlight {
+    color: #f2f2f7;
+    font: 500 16px/2.5 "Roboto", sans-serif;
+}
+
+.main .hero_title3 {
+    color: #23424a;
+    font: 700 60px/0.66 "Roboto", sans-serif;
+    height: 40px;
+    left: 455px;
+    position: absolute;
+    top: 178px;
+    width: 536px;
+}
+
+.main .flex_col1 {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 11px 0px;
+    height: 91px;
+    left: 455px;
+    position: absolute;
+    top: 7px;
+    width: 273px;
+}
+
+.main .hero_title31 {
+    color: #23424a;
+    font: 700 60px/0.66 "Roboto", sans-serif;
+    width: 100%;
+}
+
+.counting-effect {
+    counter-reset: num var(--num);
+    animation: counter 4s linear infinite alternate;
+}
+
+@property --num {
+    syntax: "<integer>";
+    initial-value: 0;
+    inherits: false;
+}
+
+@keyframes counter {
+    0% {
+        --num: 0;
+    }
+    100% {
+
+        --num: calc(var(--num) + 4040);
+    }
+}
+
+.main .hero_title32 {
+    color: #23424a;
+    font: 700 60px/0.66 "Roboto", sans-serif;
+    width: 100%;
+}
+
+.main .hero_title33 {
+    color: #23424a;
+    font: 700 60px/0.66 "Roboto", sans-serif;
+    width: 100%;
+}
+
+
+.main .flex_col2 {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px 0px;
+    height: 90px;
+    left: 128px;
+    position: absolute;
+    top: 128px;
+    width: 230px;
+}
+
+.main .flex_col3 {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 11px 0px;
+    height: 91px;
+    left: 128px;
+    position: absolute;
+    top: 7px;
+    width: 218px;
+}
+
+.main .image11 {
+    border-radius: 15px 15px 15px 15px;
+    height: 99px;
+    position: absolute;
+    right: 199px;
+    top: 20px;
+    width: 110px;
+}
+
+@keyframes count {
+    from {
+        content: "0";
+    }
+    to {
+        content: "4040";
+    }
+}
+
+.main .section4 .hero_title31::after {
+    content: "0";
+    animation: count 5s steps(4040) forwards;
+}
+
+.main .section5 {
+    display: flex;
+    flex-direction: column;
+    min-height: 479px;
+    position: relative;
+}
+
+.main .section51 {
+    display: flex;
+    flex-direction: column;
+    height: 137px;
+    left: 677px;
+    position: absolute;
+    top: 287px;
+    width: 437px;
+}
+
+.main .wrapper3 {
+    background: var(--src) center center/100% 100% no-repeat;
+    display: flex;
+    flex-direction: column;
+    height: 137px;
+    left: 0px;
+    overflow: hidden;
+    position: absolute;
+    top: 0px;
+    width: 313px;
+}
+
+.main .wrapper11 {
+    background: var(--src) center center/100% 100% no-repeat;
+    display: flex;
+    flex-direction: column;
+    height: 137px;
+    overflow: hidden;
+    position: absolute;
+    right: 82px;
+    top: 131px;
+    width: 314px;
+}
+
+.main .wrapper31 {
+    background: var(--src) center center/100% 100% no-repeat;
+    display: flex;
+    flex-direction: column;
+    height: 137px;
+    left: 558px;
+    overflow: hidden;
+    position: absolute;
+    top: 131px;
+    width: 313px;
+}
+
+.main .hero_title4 {
+    color: #ff8055;
+    font: 700 40px/1 "Roboto", sans-serif;
+    height: 40px;
+    left: 147px;
+    position: absolute;
+    top: 44px;
+    width: 1146px;
+}
+
+.main .wrapper2 {
+    background: var(--src) center center/100% 100% no-repeat;
+    display: flex;
+    flex-direction: column;
+    height: 137px;
+    left: 68px;
+    overflow: hidden;
+    position: absolute;
+    top: 131px;
+    width: 317px;
+}
+
+.main .image21 {
+    height: 127px;
+    left: 335px;
+    position: absolute;
+    top: 131px;
+    width: 183px;
+}
+
+.main .image31 {
+    height: 127px;
+    left: 824px;
+    position: absolute;
+    top: 131px;
+    width: 171px;
+}
+
+.main .wrapper21 {
+    background: var(--src) center center/100% 100% no-repeat;
+    display: flex;
+    flex-direction: column;
+    height: 137px;
+    left: 187px;
+    overflow: hidden;
+    position: absolute;
+    top: 287px;
+    width: 317px;
+}
+
+.main .image22 {
+    height: 127px;
+    left: 454px;
+    position: absolute;
+    top: 287px;
+    width: 183px;
+}
+
+.main .image32 {
+    height: 127px;
+    left: 943px;
+    position: absolute;
+    top: 287px;
+    width: 171px;
+}
+
+.main .section6 {
+    display: flex;
+    flex-direction: column;
+}
+
+.main .group14 {
+    display: flex;
+    flex-direction: column;
+    margin: 58px auto 63px;
+    position: relative;
+    width: 83.06%;
+}
+
+.main .group15 {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.main .rect11 {
+    background-color: rgba(101, 169, 166, 0.847);
+    border-radius: 20px 20px 20px 20px;
+    min-height: 676px;
+    position: relative;
+}
+
+.main .image10 {
+    border-radius: 60px 60px 60px 60px;
+    height: 172px;
+    left: 508px;
+    position: absolute;
+    top: 166px;
+    width: 182px;
+}
+
+.main .image8 {
+    height: 91px;
+    left: 558px;
+    position: absolute;
+    top: 441px;
+    width: 91px;
+}
+
+.main .subtitle8 {
+    bottom: 119px;
+    color: #23424a;
+    display: flex;
+    font: 400 20px/1.4 "Roboto", sans-serif;
+    height: 84px;
+    justify-content: center;
+    left: -17px;
+    position: absolute;
+    text-align: center;
+    width: 1220px;
+}
+
+.main .text11 {
+    color: #23424a;
+    display: flex;
+    font: 500 14px/1.71 "Roboto", sans-serif;
+    height: 24px;
+    justify-content: center;
+    left: 572.5px;
+    position: absolute;
+    text-align: center;
+    top: 417px;
+    width: 52px;
+}
+
+.main .subtitle9 {
+    color: #23424a;
+    display: flex;
+    font: 500 20px/1.4 "Roboto", sans-serif;
+    height: 28px;
+    justify-content: center;
+    left: 531px;
+    position: absolute;
+    text-align: center;
+    top: 383px;
+    width: 132px;
+}
+
+.main .image9 {
+    height: 56px;
+    left: 25px;
+    position: absolute;
+    top: 262px;
+    width: 56px;
+}
+
+.main .image91 {
+    height: 56px;
+    position: absolute;
+    right: 22px;
+    top: 262px;
+    width: 56px;
+}
+
+.main .hero_title5 {
+    color: #23424a;
+    display: flex;
+    font: 700 40px/1.25 "Roboto", sans-serif;
+    height: 50px;
+    justify-content: center;
+    left: 441px;
+    position: absolute;
+    text-align: center;
+    top: 81px;
+    width: 303px;
+}
+
+.main .section7 {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.main .group16 {
+    bottom: 63px;
+    display: flex;
+    flex-direction: column;
+    height: 93px;
+    left: 592px;
+    position: absolute;
+    width: 727px;
+}
+
+.main .rect10 {
+    background-color: white;
+    border-radius: 20px 20px 20px 20px;
+    height: 93px;
+    left: 0px;
+    outline: 1px solid #e7eaef;
+    outline-offset: -1px;
+    position: absolute;
+    top: 0px;
+    width: 727px;
+}
+
+.main .image7 {
+    height: 16px;
+    position: absolute;
+    right: 20px;
+    top: 40px;
+    width: 16px;
+}
+
+.main .subtitle7 {
+    bottom: 92px;
+    color: #252a34;
+    display: flex;
+    font: 500 20px/1.65 "Roboto", sans-serif;
+    height: 33px;
+    justify-content: flex-end;
+    left: 474px;
+    position: absolute;
+    text-align: right;
+    width: 492px;
+}
+
+.main .group17 {
+    display: flex;
+    flex-direction: column;
+    height: 93px;
+    left: 592px;
+    position: absolute;
+    top: 401px;
+    width: 727px;
+}
+
+.main .subtitle6 {
+    color: black;
+    display: flex;
+    font: 500 20px/1.65 "Roboto", sans-serif;
+    height: 33px;
+    justify-content: flex-end;
+    left: 489px;
+    position: absolute;
+    text-align: right;
+    top: 432px;
+    width: 462px;
+}
+
+.main .group18 {
+    display: flex;
+    flex-direction: column;
+    height: 93px;
+    left: 592px;
+    position: absolute;
+    top: 309px;
+    width: 727px;
+}
+
+.main .image71 {
+    height: 16px;
+    position: absolute;
+    right: 20px;
+    top: 39px;
+    width: 16px;
+}
+
+.main .subtitle71 {
+    color: #252a34;
+    display: flex;
+    font: 500 20px/1.65 "Roboto", sans-serif;
+    height: 33px;
+    justify-content: flex-end;
+    left: 581px;
+    position: absolute;
+    text-align: right;
+    top: 339px;
+    width: 278px;
+}
+
+.main .rect9 {
+    background-color: #23424a;
+    border-radius: 20px 20px 20px 20px;
+    height: 157px;
+    left: 592px;
+    position: absolute;
+    top: 60px;
+    width: 727px;
+}
+
+.main .group19 {
+    display: flex;
+    flex-direction: column;
+    height: 93px;
+    left: 592px;
+    position: absolute;
+    top: 217px;
+    width: 727px;
+}
+
+.main .subtitle61 {
+    color: black;
+    display: flex;
+    font: 500 20px/1.65 "Roboto", sans-serif;
+    height: 33px;
+    justify-content: flex-end;
+    left: 587px;
+    position: absolute;
+    text-align: right;
+    top: 247px;
+    width: 266px;
+}
+
+.main .subtitle5 {
+    color: white;
+    display: flex;
+    font: 500 20px/1.65 "Roboto", sans-serif;
+    height: 33px;
+    justify-content: flex-end;
+    left: 492px;
+    position: absolute;
+    text-align: right;
+    top: 90px;
+    width: 456px;
+}
+
+.main .group20 {
+    display: flex;
+    flex-direction: column;
+    height: 440px;
+    left: 123px;
+    position: absolute;
+    top: 91px;
+    width: 440px;
+}
+
+.main .rect7 {
+    background-color: #65a9a6;
+    height: 440px;
+    left: 0px;
+    position: absolute;
+    top: 0px;
+    width: 440px;
+}
+
+.main .rect8 {
+    background-color: #f2f2f7;
+    height: 400px;
+    left: 20px;
+    position: absolute;
+    top: 19px;
+    width: 400px;
+}
+
+.main .wrapper4 {
+    background: var(--src) center center/100% 100% no-repeat;
+    display: flex;
+    flex-direction: column;
+    margin: 106px 10.14% 542px auto;
+    min-height: 2px;
+    position: relative;
+    width: 16px;
+}
+
+.main .paragraph {
+    color: white;
+    font: 400 14px/1.92 "Roboto", sans-serif;
+    height: 54px;
+    left: 612px;
+    position: absolute;
+    top: 133px;
+    width: 626px;
+}
+
+.main .section8 {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.main .image15 {
+    height: 104px;
+    position: absolute;
+    right: 251px;
+    top: 69px;
+    width: 82px;
+}
+
+.main .subtitle151 {
+    align-items: center;
+    color: black;
+    display: flex;
+    font: 500 20px/1.35 "Roboto", sans-serif;
+    justify-content: center;
+    margin: 198.5px 13.4% 36.5px auto;
+    position: relative;
+    text-align: center;
+    width: 198px;
+}
+
+.main .group21 {
+    display: flex;
+    flex-direction: column;
+    height: 40px;
+    left: 320px;
+    position: absolute;
+    top: 107px;
+    width: 800px;
+}
+
+.main .medium_title21 {
+    color: black;
+    font: 700 24px/1.66 "Roboto", sans-serif;
+    height: 40px;
+    left: 0px;
+    position: absolute;
+    top: 0px;
+    width: 800px;
+}
+
+.main .image61 {
+    height: 20px;
+    position: absolute;
+    right: 123px;
+    top: 10px;
+    width: 34px;
+}
+
+.main .section9 {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.main .subtitle {
+    color: white;
+    font: 400 20px/1.5 "Roboto", sans-serif;
+    margin: 541px 32.43% 7px auto;
+    position: relative;
+    width: 418px;
+}
+
+.main .group22 {
+    display: flex;
+    flex-direction: column;
+    height: 529px;
+    left: 0px;
+    position: absolute;
+    top: 49px;
+    width: 100%;
+}
+
+.main .group23 {
+    display: flex;
+    flex-direction: column;
+    height: 529px;
+    left: 0px;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+}
+
+.main .decorator1 {
+    height: 529px;
+    left: 0px;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+}
+
+.main .subtitle10 {
+    bottom: 1px;
+    color: white;
+    font: 400 20px/1.5 "Roboto", sans-serif;
+    height: 30px;
+    left: 511px;
+    position: absolute;
+    width: 418px;
+}
+
+.main .group24 {
+    display: flex;
+    flex-direction: column;
+    height: 256px;
+    left: 130px;
+    position: absolute;
+    top: 238px;
+    width: 1194px;
+}
+
+.main .group25 {
+    display: flex;
+    flex-direction: column;
+    height: 256px;
+    left: 0px;
+    position: absolute;
+    top: 0px;
+    width: 1194px;
+}
+
+.main .rect12 {
+    background-color: white;
+    border-radius: 20px 20px 20px 20px;
+    height: 256px;
+    left: 0px;
+    position: absolute;
+    top: 0px;
+    width: 1194px;
+}
+
+.main .subtitle13 {
+    color: #3d3d3d;
+    display: flex;
+    font: 500 20px/0.8 "Roboto", sans-serif;
+    height: 16px;
+    justify-content: flex-end;
+    left: 354px;
+    position: absolute;
+    text-align: right;
+    top: 137px;
+    width: 484px;
+}
+
+.main .image13 {
+    border-radius: 10px 10px 10px 10px;
+    bottom: 40px;
+    height: 44px;
+    left: 744px;
+    position: absolute;
+    width: 182px;
+}
+
+.main .image14 {
+    border-radius: 5px 5px 5px 5px;
+    height: 68px;
+    position: absolute;
+    right: 147px;
+    top: 148px;
+    width: 88px;
+}
+
+.main .rect14 {
+    background-color: #ff8055;
+    border-radius: 0px 6px 6px 0px;
+    height: 31px;
+    position: absolute;
+    right: 18px;
+    top: 80px;
+    width: 48px;
+}
+
+.main .group26 {
+    display: flex;
+    flex-direction: column;
+    height: 16px;
+    left: 94px;
+    position: absolute;
+    top: 86px;
+    width: 1004px;
+}
+
+.main .rect13 {
+    background-color: white;
+    border-radius: 6px 6px 6px 6px;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.058);
+    height: 31px;
+    position: absolute;
+    right: -35px;
+    top: -6px;
+    width: 216px;
+}
+
+.main .group27 {
+    display: flex;
+    flex-direction: column;
+    height: 16px;
+    left: 0px;
+    position: absolute;
+    top: 0px;
+    width: 1004px;
+}
+
+.main .desc {
+    color: #acacac;
+    display: flex;
+    font: 400 12px/1.33 "Roboto", sans-serif;
+    height: 16px;
+    justify-content: flex-end;
+    left: 0px;
+    position: absolute;
+    text-align: right;
+    top: 0px;
+    width: 1004px;
+}
+
+.main .subtitle11 {
+    color: white;
+    display: flex;
+    font: 500 20px/0.8 "Roboto", sans-serif;
+    height: 16px;
+    justify-content: flex-end;
+    left: -74px;
+    position: absolute;
+    text-align: right;
+    top: 1px;
+    width: 1152px;
+}
+
+.main .group28 {
+    display: flex;
+    flex-direction: column;
+    height: 30px;
+    left: 824px;
+    position: absolute;
+    top: 68px;
+    width: 30px;
+}
+
+.main .rect15 {
+    border-radius: 4px 4px 4px 4px;
+    height: 30px;
+    left: 0px;
+    outline: 1px solid #65a9a6;
+    position: absolute;
+    top: 0px;
+    width: 30px;
+}
+
+.main .image111 {
+    height: 15px;
+    left: 7px;
+    position: absolute;
+    top: 7px;
+    width: 16px;
+}
+
+.main .rect151 {
+    border-radius: 4px 4px 4px 4px;
+    height: 30px;
+    left: 784px;
+    outline: 1px solid #65a9a6;
+    position: absolute;
+    top: 68px;
+    width: 30px;
+}
+
+.main .image72 {
+    height: 16px;
+    left: 791px;
+    position: absolute;
+    top: 75px;
+    width: 16px;
+}
+
+.main .group29 {
+    display: flex;
+    flex-direction: column;
+    height: 30px;
+    left: 744px;
+    position: absolute;
+    top: 68px;
+    width: 30px;
+}
+
+.main .image12 {
+    height: 16px;
+    left: 11px;
+    position: absolute;
+    top: 8px;
+    width: 8px;
+}
+
+.main .paragraph1 {
+    color: #3d3d3d;
+    font: 400 14px/2.14 "Roboto", sans-serif;
+    height: 120px;
+    left: 552px;
+    position: absolute;
+    top: 57px;
+    width: 93px;
+}
+
+.main .paragraph11 {
+    color: #3d3d3d;
+    font: 400 14px/2.14 "Roboto", sans-serif;
+    height: 150px;
+    left: 284px;
+    position: absolute;
+    top: 57px;
+    width: 138px;
+}
+
+.main .group30 {
+    display: flex;
+    flex-direction: column;
+    height: 16px;
+    left: 16px;
+    position: absolute;
+    top: 27px;
+    width: 1160px;
+}
+
+.main .subtitle12 {
+    color: #3d3d3d;
+    font: 700 20px/0.8 "Roboto", sans-serif;
+    height: 16px;
+    left: 0px;
+    position: absolute;
+    top: 0px;
+    width: 1160px;
+    cursor: pointer;
+}
+
+.main .group31 {
+    bottom: -6px;
+    display: flex;
+    flex-direction: column;
+    height: 16px;
+    left: 268px;
+    position: absolute;
+    width: 624px;
+}
+
+.main .group32 {
+    display: flex;
+    flex-direction: column;
+    height: 16px;
+    left: 0px;
+    position: absolute;
+    top: 0px;
+    width: 624px;
+}
+
+.main .subtitle131 {
+    color: #3d3d3d;
+    font: 500 20px/0.8 "Roboto", sans-serif;
+    height: 16px;
+    left: 0px;
+    position: absolute;
+    top: 0px;
+    width: 624px;
+}
+
+.main .group33 {
+    display: flex;
+    flex-direction: column;
+    height: 16px;
+    left: 55px;
+    position: absolute;
+    top: -4px;
+    width: 514px;
+}
+
+.main .subtitle101 {
+    bottom: -7px;
+    color: #3d3d3d;
+    display: flex;
+    font: 500 20px/1 "Roboto", sans-serif;
+    height: 20px;
+    justify-content: flex-end;
+    left: -373px;
+    position: absolute;
+    text-align: right;
+    width: 1260px;
+}
+
+.main .subtitle132 {
+    color: #3d3d3d;
+    display: flex;
+    font: 500 20px/0.8 "Roboto", sans-serif;
+    height: 16px;
+    justify-content: flex-end;
+    left: 0px;
+    position: absolute;
+    text-align: right;
+    top: 0px;
+    width: 514px;
+}
+
+.main .subtitle133 {
+    color: #3d3d3d;
+    font: 500 20px/0.8 "Roboto", sans-serif;
+    height: 16px;
+    left: 261px;
+    position: absolute;
+    top: -4px;
+    width: 102px;
+}
+
+.main .paragraph12 {
+    color: #3d3d3d;
+    font: 400 14px/2.14 "Roboto", sans-serif;
+    height: 150px;
+    left: 16px;
+    position: absolute;
+    top: 57px;
+    width: 168px;
+}
+
+.main .group34 {
+    display: flex;
+    flex-direction: column;
+    height: 22px;
+    left: 140px;
+    position: absolute;
+    top: 179px;
+    width: 1172px;
+}
+
+.main .subtitle14 {
+    color: white;
+    display: flex;
+    font: 500 20px/1.1 "Roboto", sans-serif;
+    height: 22px;
+    justify-content: flex-end;
+    left: 0px;
+    position: absolute;
+    text-align: right;
+    top: 0px;
+    width: 1172px;
+}
+
+.main .wrapper6 {
+    height: 20px;
+    position: absolute;
+    right: 166px;
+    top: 1px;
+    width: 20px;
+}
+
+.main .group35 {
+    display: flex;
+    flex-direction: column;
+    height: 22px;
+    left: 380px;
+    position: absolute;
+    top: 179px;
+    width: 692px;
+}
+
+.main .group36 {
+    display: flex;
+    flex-direction: column;
+    height: 22px;
+    left: 0px;
+    position: absolute;
+    top: 0px;
+    width: 692px;
+}
+
+.main .subtitle141 {
+    color: white;
+    display: flex;
+    font: 500 20px/1.1 "Roboto", sans-serif;
+    height: 22px;
+    justify-content: flex-end;
+    left: 0px;
+    position: absolute;
+    text-align: right;
+    top: 0px;
+    width: 692px;
+}
+
+.main .wrapper7 {
+    height: 20px;
+    left: 409px;
+    position: absolute;
+    top: 1px;
+    width: 20px;
+}
+
+.main .wrapper8 {
+    height: 20px;
+    left: -2px;
+    position: absolute;
+    top: 1px;
+    width: 20px;
+}
+
+.main .subtitle142 {
+    color: white;
+    font: 500 20px/1.1 "Roboto", sans-serif;
+    height: 44px;
+    left: 407px;
+    position: absolute;
+    top: 179px;
+    width: 370px;
+}
+
+.main .image41 {
+    border-radius: 20px 20px 20px 20px;
+    height: 57px;
+    left: 133px;
+    position: absolute;
+    top: 164px;
+    width: 52px;
+}
+
+.main .subtitle18 {
+    color: white;
+    font: 700 20px/1.35 "Roboto", sans-serif;
+    height: 54px;
+    left: 194px;
+    position: absolute;
+    top: 170px;
+    width: 161px;
+}
+
+@media screen and (max-width: 620px) {
+    .searchBox:hover > .searchInput {
+        width: 150px;
+        padding: 0 6px;
+    }
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="/css/Registration.css" />
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+    <title>Login</title>
+</head>
+
+<body>
+    <div class="form_wrapper">
+        <div class="form_container">
+            <div class="title_container">
+                <h2>Login</h2>
+            </div>
+            <div class="row clearfix">
+                <div class="">
+                    <form th:action="@{'/auth/login'}" method="post">
+                        <div class="login-warning" th:if="${message != null}" style="border: 1px solid green">
+                            <p class="warning-warning" id="warning" style="color: green">[[${message}]]</p>
+                            <span class="close" id="close" style="color: green">×</span>
+                        </div>
+                        <div class="login-warning" th:if="${param.error != null}">
+                            <p class="warning-warning" id="warning">Incorrect email or password.</p>
+                            <span class="close" id="close">×</span>
+                        </div>
+                        <div class="login-warning" th:if="${invalidToken != null}">
+                            <p class="warning-warning" id="warning">[[${invalidToken}]]</p>
+                            <span class="close" id="close">×</span>
+                        </div>
+                        <div class="login-warning" th:if="${param.verify_success != null}" style="border: 1px solid green">
+                            <p class="warning-warning" id="warning" style="color: green">Congratulations! Your account has been verified. Now you can login!</p>
+                            <span class="close" id="close" style="color: green">×</span>
+                        </div>
+                        <div class="login-warning" th:if="${param.verify_fail != null}">
+                            <p class="warning-warning" id="warning">Your account was already verified, or the verification code
+                                is invalid.</p>
+                            <span class="close" id="close">×</span>
+                        </div>
+                        <div class="login-warning" th:if="${param.afterRegistration != null}" style="border: 1px solid green">
+                            <p class="warning-warning" id="warning" style="color: green">To complete registration, you should verify your account using your email.</p>
+                            <span class="close" id="close" style="color: green">×</span>
+                        </div>
+                        <div class="login-warning" th:if="${param.accountExist != null}">
+                            <p class="warning-warning" id="warning">You have already registered or your email is used!</p>
+                            <span class="close" id="close">×</span>
+                        </div>
+
+                        <div class="input_field">
+                            <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+                            <input type="email" name="email" placeholder="Email" required />
+                        </div>
+                        <div class="input_field">
+                            <span class="lock-icon"><i aria-hidden="true" class="fa fa-lock"></i></span>
+                            <input type="password" name="password" placeholder="Password" required />
+                        </div>
+                        <span class="eye-icon" id="togglePassword" style="position: absolute; right: 33px; top: 44%; transform: translateY(-50%);"><i aria-hidden="true" class="fa fa-eye" onclick="togglePasswordVisibility()"></i></span>
+                        <div class="input_field checkbox_option">
+                            <input type="checkbox" id="cb2" name="remember-me">
+                            <label for="cb2">Remember me</label>
+                        </div>
+                        <div class="input_field">
+                            <a th:href="@{'/auth/forgotPassword'}">Forgot password?</a>
+                        </div>
+                        <input class="button" type="submit" value="Login" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p class="credit">Not a member yet? <a th:href="@{'/auth/register'}">Register now</a></p>
+
+    <script type="text/javascript">
+        document.getElementById('close').addEventListener('click', function() {
+            document.querySelector('.login-warning').style.display = 'none';
+        });
+
+        function togglePasswordVisibility() {
+            var passwordInput = document.querySelector('input[name="password"]');
+            var eyeIcon = document.getElementById('togglePassword').querySelector('i');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.classList.remove('fa-eye');
+                eyeIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
+            }
+
+            document.getElementById('togglePassword').addEventListener('mouseleave', function() {
+                if (passwordInput.type === 'text') {
+                    passwordInput.type = 'password';
+                    eyeIcon.classList.remove('fa-eye-slash');
+                    eyeIcon.classList.add('fa-eye');
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

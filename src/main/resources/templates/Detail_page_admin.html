@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+          integrity="sha512-fvVGrO69KYlz0tjRGrOpRsdZIb6HemjSzExD9qQCeTtF8Zq4p21F5V32vlQ+8bXC7ZZIgAEbaHOcyEg6UeVs8A=="
+          crossorigin="anonymous"/>
+    <link rel="stylesheet" type="text/css"
+          href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"/>
+
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/fonts.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/Detail_for_admin.css"/>
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+
+    <title>Detail for Admin Page</title>
+</head>
+<body>
+<header class="custom-header">
+    <section class="section1" style="--src:url(/img/0502f0f63cc56790c6952133ae2b1481.png)">
+        <div class="content_box">
+
+            <div class="searchBox">
+                <input class="searchInput" type="text" name="" placeholder="Search">
+                <button class="searchButton" href="#">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+            <a class="subtitle1" th:href="@{'/main/'}"><h3>STELLAR<br/>INVESTMENT</h3></a>
+
+            <a class="subtitle21" th:href="@{'/main/'}"><h3>Home</h3></a>
+
+            <img class="image4" src="/img/ace06293b0d4076285adfa86c63156ab.png" alt=""/>
+            <div class="custom-dropdown">
+                <img class="custom-box" th:src="@{${user.photosImagePath}}" alt="alt text"
+                     onclick="toggleCustomDropdown()">
+                <div id="myCustomDropdown" class="custom-dropdown-content">
+                    <a th:href="@{'/main/account_details'}">My Profile</a>
+                    <a sec:authorize="hasAuthority('Admin')" th:href="@{'/admin/projects'}">Manage Projects</a>
+                    <a href="JavaScript:void(0)" onclick="singOutForm.submit()">Log Out
+                        <form th:action="@{'/logout'}" method="post" id="singOutForm"></form>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</header>
+<section class="section2">
+    <div class="flex_col">
+        <div class="content_box4">
+            <div class="flex_row">
+                <div class="flex_col1">
+                    <img class="image" th:src="@{${project.getMainImagePath}}" alt="alt text"/>
+                    <th:block th:each="projectImage : ${project.images}">
+                        <img class="image" th:src="@{${projectImage.getImagePath()}}" alt="alt text"/>
+                    </th:block>
+                </div>
+                <img class="cover" th:src="@{${project.getMainImagePath}}" alt="alt text"/>
+            </div>
+
+            <div class="content_box3">
+                <div class="progress" style="margin-top: 235px; height: 40px; border-radius: 25px;">
+                    <div class="progress-bar" role="progressbar"
+                         th:style="'width: ' + ${100} + '%; background-color: #ff7f50; font-size: 20px;'"
+                         th:text="${project.percent} + '%'" th:if="${project.percent >= 100}"
+                         aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar" role="progressbar"
+                         th:style="'width: ' + ${100} + '%; background-color: #23424A; font-size: 20px;'"
+                         th:text="${project.percent} + '%'" th:if="${project.percent == 0}"
+                         aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar" role="progressbar"
+                         th:style="'width: ' + ${project.percent} + '%; background-color: #ff7f50; font-size: 20px;'"
+                         th:text="${project.percent} + '%'" th:if="${project.percent != 0 and project.percent < 100}"
+                         aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar" role="progressbar"
+                         th:style="'width: ' + (100 - ${project.percent}) + '%; background-color: #23424A; font-size: 20px;'"
+                         th:text="${100 - project.percent} + '%'" th:if="${project.percent != 0 and project.percent < 100}"
+                         aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <div class="flex_col2">
+                    <div class="text">RAISED</div>
+                    <h2 class="medium_title1">₸0</h2>
+                </div>
+                <div class="flex_col3">
+                    <div class="text1">Closed Investment</div>
+                    <h2 class="medium_title1" th:text="${project.finishTime}"></h2>
+                </div>
+                <div class="flex_col4">
+                    <div class="text1">SHARE PRICE<br/></div>
+                    <h2 class="medium_title1">₸0</h2>
+                </div>
+                <div class="flex_col5">
+                    <div class="text">TARGET</div>
+                    <h2 class="medium_title1" th:text="'₸'+ ${project.amountNeeded}"></h2>
+                </div>
+                <div class="flex_col6">
+                    <div class="text1">INVESTORS</div>
+                    <h2 class="medium_title2">0</h2>
+                </div>
+                <hr class="line" size="1"/>
+                <div class="text11">Short Description:</div>
+                <h2 class="medium_title3" th:text="${project.title}"></h2>
+                <h3 class="subtitle13" th:text="'₸'+ ${project.amountNeeded}"></h3>
+                <p class="paragraph" th:text="${project.shortDescription}">
+                <div class="text12">Сurrent Tendency:</div>
+            </div>
+        </div>
+        <div class="content_box2">
+
+            <form th:action="@{/admin/approve}" method="post">
+                <input type="hidden" name="projectIdToApprove" th:value="${project.id}">
+                <button type="submit" class="join-button">Accept</button>
+            </form>
+
+            <form th:action="@{/admin/reject}" method="post">
+                <input type="hidden" name="projectIdToReject" th:value="${project.id}">
+                <button type="submit" class="wrapper1">Reject</button>
+            </form>
+
+        </div>
+    </div>
+</section>
+
+
+<div id="main-content" class="blog-page">
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-lg-8 col-md-12 left-box">
+                <div class="card single_post">
+                    <div class="body">
+                        <h3><a href="">Full Description</a></h3>
+                        <p th:text="${project.longDescription}"></p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="header">
+                        <h2>Team Members</h2>
+                    </div>
+                    <div class="body">
+                        <ul class="comment-reply list-unstyled" th:if="${#lists.isEmpty(teamMembers)}">
+                            <li>
+                                <p>So far we don't have any approved member.</p>
+                            </li>
+                        </ul>
+                        <ul class="comment-reply list-unstyled" th:unless="${#lists.isEmpty(teamMembers)}">
+                            <li class="row clearfix" th:each="teamMember : ${teamMembers}">
+                                <div class="icon-box col-md-2 col-4">
+                                    <img class="img-fluid img-thumbnail"
+                                         th:src="@{${teamMember.user.photosImagePath}}" alt="Awesome Image"
+                                         style="width: 100%">
+                                </div>
+                                <div class="text-box col-md-10 col-8 p-l-0 p-r0">
+                                    <h5 class="m-b-0" th:text="${teamMember.user.fullName}"></h5>
+                                    <p th:text="'My position in that project is ' + ${teamMember.projectTeam.position} + '. You can find more info about me, using that link: ' + ${teamMember.cvLink}"></p>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card single_post" th:unless="${project.aboutCreator == null or project.aboutCreator == ''}">
+                    <div class="body">
+                        <h3><a href="">About Creator</a></h3>
+                        <p th:text="${project.aboutCreator}"></p>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-lg-4 col-md-12 right-box">
+                <div class="card">
+                    <div class="header">
+                        <h2>Project category</h2>
+                    </div>
+                    <div class="body widget">
+                        <ul class="list-unstyled categories-clouds m-b-0">
+                            <li><a href="javascript:void(0);">eCommerce</a></li>
+                            <li><a href="javascript:void(0);">Website</a></li>
+                            <li><a href="javascript:void(0);">Creative Innovation</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+
+
+                    <div class="body widget popular-post">
+                        <div class="row">
+                            <div class="col-lg-10">
+                                <div class="single_post" th:each="tariff : ${project.tariffs}">
+
+                                    <div class="content_box6">
+                                        <div class="text" th:text="${tariff.tariffName}"></div>
+                                        <p class="paragraph11" th:text="${tariff.tariffInfo}">
+                                        </p>
+                                        <h2 class="medium_title" th:text="'₸' + ${tariff.tariffAmount}"></h2>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</div>
+
+
+</div>
+
+
+<footer class="footer">
+    <div class="container2">
+        <div class="footerNav">
+            <div class="logoFooter">
+                <img src="/img/logo.svg" alt="#">
+                <a href="#">STELLAR INVESTMENT</a>
+            </div>
+            <ul class="eachNav">
+                <li>
+                    <img src="/img/geo.svg" alt="#">
+                    <p style="width: 300px;">microdistrict Daraboz, home 123, Almaty, Kazakhstan</p>
+                </li>
+                <li>
+                    <img src="/img/mail.svg" alt="#">
+                    <p>contact@almightypush.com</p>
+                </li>
+                <li>
+                    <img src="/img/phone.svg" alt="#">
+                    <p>+7 775 203 01 90</p>
+                </li>
+            </ul>
+        </div>
+        <p class="year">© 2024 Stellar Investment. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+    const dropdown = document.querySelector('.custom-dropdown');
+    const dropdownContent = document.querySelector('.custom-dropdown-content');
+
+    dropdown.addEventListener('click', function (event) {
+
+        dropdownContent.classList.toggle('show');
+    });
+
+    const images = document.querySelectorAll('.image');
+
+    // Attach click event handler to each image
+    images.forEach((image) => {
+        image.addEventListener('click', (event) => {
+            // Remove outline from all images
+            images.forEach((img) => {
+                img.style.outline = 'none';
+            });
+
+            // Set outline on the clicked image
+            event.target.style.outline = '2px solid rgb(255, 127, 80)';
+
+            // Set cover image source to the clicked image source
+            const cover = document.querySelector('.cover');
+            cover.src = event.target.src;
+        });
+    });
+
+    // Get the apply button element
+    function openModal() {
+        document.getElementById("myModal").style.display = "block";
+    }
+
+    function closeModal() {
+        document.getElementById("myModal").style.display = "none";
+    }
+
+    $(document).ready(function () {
+        $(".join-button").click(function () {
+            $(".single_post").fadeIn("slow");
+        });
+    });
+</script>
+</body>
+</html>
